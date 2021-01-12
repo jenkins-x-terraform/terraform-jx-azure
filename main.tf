@@ -120,16 +120,6 @@ output "connect" {
   value       = module.cluster.connect
 }
 
-output "follow_install_logs" {
-  description = "Follow Jenkins X install logs"
-  value       = "jx admin log"
-}
-
-output "docs" {
-  description = "Follow Jenkins X 3.x docs for more information"
-  value       = "https://jenkins-x.io/v3/"
-}
-
 output "kube_config_admin" {
   value     = module.cluster.kube_config_admin_raw
   sensitive = true
