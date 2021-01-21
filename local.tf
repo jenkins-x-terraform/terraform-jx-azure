@@ -14,8 +14,8 @@ locals {
 
   merged_secrets = merge(local.registry_secrets)
 
-  job_secret_env_vars = {
-    AZURE_TENANT_ID = module.secrets.tenant_id
+  job_secret_env_vars = var.key_vault_enabled ? {
+    AZURE_TENANT_ID       = module.secrets.tenant_id
     AZURE_SUBSCRIPTION_ID = module.secrets.subscription_id
-  }
+  } : {}
 }
