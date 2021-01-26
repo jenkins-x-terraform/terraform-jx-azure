@@ -81,6 +81,7 @@ module "jx-boot" {
   jx_bot_username     = var.jx_bot_username
   jx_bot_token        = var.jx_bot_token
   job_secret_env_vars = local.job_secret_env_vars
+  install_vault       = !var.key_vault_enabled
 }
 
 module "dns" {
