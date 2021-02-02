@@ -19,8 +19,6 @@ provider "azurerm" {
 }
 
 provider "kubernetes" {
-  load_config_file = false
-
   host = module.cluster.cluster_endpoint
   cluster_ca_certificate = base64decode(
     module.cluster.ca_certificate,
