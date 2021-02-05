@@ -70,6 +70,7 @@ module "registry" {
   source       = "github.com/chrismellard/terraform-jx-registry-acr?ref=main"
   cluster_name = local.cluster_name
   principal_id = module.cluster.kubelet_identity_id
+  location     = var.location
 }
 
 module "jx-boot" {
