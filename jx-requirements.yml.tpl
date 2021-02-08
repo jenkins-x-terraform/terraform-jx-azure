@@ -35,4 +35,4 @@ spec:
   storage:
     - name: logs
       url: azblob://${log_container_name}
-  
+  terraformVault: ${vault_installed}

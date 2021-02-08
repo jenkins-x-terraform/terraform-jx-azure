@@ -1,5 +1,5 @@
 locals {
-  jx_requirerments_interpolated_content = templatefile("${path.module}/jx-requirements.yml.tpl", {
+  jx_requirements_interpolated_content = templatefile("${path.module}/jx-requirements.yml.tpl", {
 
     registry_name        = "${module.registry.registry_name}.azurecr.io"
     domain_name          = module.dns.domain
@@ -11,9 +11,10 @@ locals {
     key_vault_name       = module.secrets.key_vault_name
     log_container_name   = module.storage.log_container_name
     storage_account_name = module.storage.storage_account_name
+    vault_installed      = module.jx-boot.vault_instance_release_id != "" ? true : false
   })
 
-  jx_requirements_split_content   = split("\n", local.jx_requirerments_interpolated_content)
+  jx_requirements_split_content   = split("\n", local.jx_requirements_interpolated_content)
   jx_requirements_compact_content = compact(local.jx_requirements_split_content)
   jx_requirements_content         = join("\n", local.jx_requirements_compact_content)
 }
