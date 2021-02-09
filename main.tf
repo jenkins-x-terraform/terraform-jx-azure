@@ -48,7 +48,7 @@ provider "helm" {
 }
 
 module "cluster" {
-  source                           = "github.com/chrismellard/terraform-jx-cluster-aks?ref=main"
+  source                           = "./terraform-jx-cluster-aks"
   cluster_name                     = local.cluster_name
   cluster_network_model            = var.cluster_network_model
   cluster_node_resource_group_name = var.cluster_node_resource_group_name
@@ -67,14 +67,14 @@ module "cluster" {
 }
 
 module "registry" {
-  source       = "github.com/chrismellard/terraform-jx-registry-acr?ref=main"
+  source       = "./terraform-jx-registry-acr"
   cluster_name = local.cluster_name
   principal_id = module.cluster.kubelet_identity_id
   location     = var.location
 }
 
 module "jx-boot" {
-  source              = "github.com/chrismellard/terraform-jx-boot?ref=main"
+  source              = "./terraform-jx-boot"
   depends_on          = [module.cluster]
   jx_git_url          = var.jx_git_url
   jx_bot_username     = var.jx_bot_username
@@ -84,7 +84,7 @@ module "jx-boot" {
 }
 
 module "dns" {
-  source                          = "github.com/chrismellard/terraform-jx-azuredns?ref=main"
+  source                          = "./terraform-jx-azuredns"
   enabled                         = var.dns_enabled
   apex_domain_integration_enabled = var.apex_domain_integration_enabled
   apex_domain_name                = var.apex_domain_name
@@ -97,7 +97,7 @@ module "dns" {
 }
 
 module "secrets" {
-  source              = "github.com/chrismellard/terraform-jx-azurekeyvault?ref=main"
+  source              = "./terraform-jx-azurekeyvault"
   enabled             = var.key_vault_enabled
   principal_id        = module.cluster.kubelet_identity_id
   cluster_name        = local.cluster_name
@@ -109,7 +109,7 @@ module "secrets" {
 }
 
 module "storage" {
-  source               = "github.com/chrismellard/terraform-jx-azure-storage?ref=master"
+  source               = "./terraform-jx-azure-storage"
   resource_group_name  = var.storage_resource_group_name
   cluster_name         = local.cluster_name
   location             = var.location
