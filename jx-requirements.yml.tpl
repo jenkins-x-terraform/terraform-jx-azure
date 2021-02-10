@@ -4,8 +4,6 @@ spec:
   cluster:
     provider: aks
     registry: ${registry_name}
-    chartRepository: ${registry_name}
-    chartKind: oci
     azure:
       storage:
         storageAccountName: ${storage_account_name}
