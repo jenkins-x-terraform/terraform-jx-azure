@@ -8,6 +8,12 @@ terraform {
       version = ">=1.13.3"
     }
   }
+  backend "azurerm" {
+    resource_group_name  = "rg-tfstate"
+    storage_account_name = "tfstate21043"
+    container_name       = "tfstate"
+    key                  = "omv-qa.terraform.tfstate"
+  }
 }
 
 provider "azurerm" {
@@ -52,12 +58,12 @@ module "cluster" {
   cluster_name                     = local.cluster_name
   cluster_network_model            = var.cluster_network_model
   cluster_node_resource_group_name = var.cluster_node_resource_group_name
-  cluster_resource_group_name      = var.cluster_resource_group_name
+  cluster_resource_group_name      = var.resource_group_name
   cluster_version                  = var.cluster_version
   enable_log_analytics             = var.enable_log_analytics
   location                         = var.location
   logging_retention_days           = var.logging_retention_days
-  network_resource_group_name      = var.network_resource_group_name
+  network_resource_group_name      = var.resource_group_name
   network_name                     = var.network_name
   node_count                       = var.node_count
   node_size                        = var.node_size
@@ -71,37 +77,38 @@ module "registry" {
   cluster_name = local.cluster_name
   principal_id = module.cluster.kubelet_identity_id
   location     = var.location
+  resource_group_name = var.resource_group_name
 }
 
-module "jx-boot" {
-  source              = "./terraform-jx-boot"
-  depends_on          = [module.cluster]
-  jx_git_url          = var.jx_git_url
-  jx_bot_username     = var.jx_bot_username
-  jx_bot_token        = var.jx_bot_token
-  job_secret_env_vars = local.job_secret_env_vars
-  install_vault       = !var.key_vault_enabled
-}
+#module "jx-boot" {
+#  source              = "./terraform-jx-boot"
+#  depends_on          = [module.cluster]
+#  jx_git_url          = var.jx_git_url
+#  jx_bot_username     = var.jx_bot_username
+#  jx_bot_token        = var.jx_bot_token
+#  job_secret_env_vars = local.job_secret_env_vars
+#  install_vault       = !var.key_vault_enabled
+#}
 
-module "dns" {
-  source                          = "./terraform-jx-azuredns"
-  enabled                         = var.dns_enabled
-  apex_domain_integration_enabled = var.apex_domain_integration_enabled
-  apex_domain_name                = var.apex_domain_name
-  apex_resource_group_name        = var.apex_resource_group_name
-  cluster_name                    = local.cluster_name
-  domain_name                     = var.domain_name
-  location                        = var.location
-  principal_id                    = module.cluster.kubelet_identity_id
-  resource_group_name             = var.dns_resource_group_name
-}
+#module "dns" {
+#  source                          = "./terraform-jx-azuredns"
+#  enabled                         = var.dns_enabled
+#  apex_domain_integration_enabled = var.apex_domain_integration_enabled
+#  apex_domain_name                = var.apex_domain_name
+#  apex_resource_group_name        = var.apex_resource_group_name
+#  cluster_name                    = local.cluster_name
+#  domain_name                     = var.domain_name
+#  location                        = var.location
+#  principal_id                    = module.cluster.kubelet_identity_id
+#  resource_group_name             = var.resource_group_name
+#}
 
 module "secrets" {
   source              = "./terraform-jx-azurekeyvault"
   enabled             = var.key_vault_enabled
   principal_id        = module.cluster.kubelet_identity_id
   cluster_name        = local.cluster_name
-  resource_group_name = var.key_vault_resource_group_name
+  resource_group_name = var.resource_group_name
   key_vault_name      = var.key_vault_name
   key_vault_sku       = var.key_vault_sku
   location            = var.location
@@ -110,7 +117,7 @@ module "secrets" {
 
 module "storage" {
   source               = "./terraform-jx-azure-storage"
-  resource_group_name  = var.storage_resource_group_name
+  resource_group_name  = var.resource_group_name
   cluster_name         = local.cluster_name
   location             = var.location
   storage_principal_id = module.cluster.kubelet_identity_id
