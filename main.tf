@@ -85,12 +85,11 @@ module "jx-boot" {
 
 module "dns" {
   source                          = "./terraform-jx-azuredns"
-  enabled                         = var.dns_enabled
   apex_domain_integration_enabled = var.apex_domain_integration_enabled
-  apex_domain_name                = var.apex_domain_name
+  apex_domain                     = var.apex_domain
   apex_resource_group_name        = var.apex_resource_group_name
   cluster_name                    = local.cluster_name
-  domain_name                     = var.domain_name
+  subdomain                       = var.subdomain
   location                        = var.location
   principal_id                    = module.cluster.kubelet_identity_id
   resource_group_name             = var.dns_resource_group_name
