@@ -107,22 +107,32 @@ variable "logging_retention_days" {
 
 variable "apex_domain_integration_enabled" {
   type        = bool
-  default     = false
+  default     = true
   description = "Flag that when set attempts to create delegation records in apex domain to point to domain created by this module"
 }
 variable "dns_enabled" {
   type        = bool
   default     = false
-  description = "Flag that when set creates an Azure DNS zone for JX"
+  description = "** Deprecated** Set apex_domain instead"
+}
+variable "apex_domain" {
+  type        = string
+  description = "The parent / apex domain to be used for the cluster"
+  default     = ""
 }
 variable "apex_domain_name" {
   type        = string
-  description = "The name of the parent/apex domain in which to create this domain zone, e.g. jenkins-x.io. Required if dns_enabled set to true"
+  description = "**Deprecated** Please use apex_domain instead"
   default     = ""
 }
 variable "domain_name" {
   type        = string
-  description = "The domain name of the zone to create, e.g. dev-subdomain. Required if dns_enabled set to true"
+  description = "**Deprecated** Please use subdomain instead"
+  default     = ""
+}
+variable "subdomain" {
+  description = "Optional sub domain for the installation"
+  type        = string
   default     = ""
 }
 variable "apex_resource_group_name" {
