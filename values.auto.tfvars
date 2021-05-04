@@ -17,3 +17,4 @@ node_count=5
 node_size="Standard_D4s_v3"
 jx_bot_username = "mqube-bot"
 jx_bot_token = "c74d56d996f4bd7cbb2ab20c28bae5295d754634"
+external_registry_url = "jfrogsomething.com"
