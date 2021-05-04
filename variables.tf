@@ -1,3 +1,4 @@
+
 variable "cluster_name" {
   description = "Variable to provide your desired name for the cluster. The script will create a random name if this is empty"
   type        = string
@@ -107,32 +108,17 @@ variable "logging_retention_days" {
 
 variable "apex_domain_integration_enabled" {
   type        = bool
-  default     = true
-  description = "Flag that when set attempts to create delegation records in apex domain to point to domain created by this module"
-}
-variable "dns_enabled" {
-  type        = bool
   default     = false
-  description = "** Deprecated** Set apex_domain instead"
+  description = "Flag that when set attempts to create delegation records in apex domain to point to domain created by this module"
 }
 variable "apex_domain" {
   type        = string
-  description = "The parent / apex domain to be used for the cluster"
-  default     = ""
-}
-variable "apex_domain_name" {
-  type        = string
-  description = "**Deprecated** Please use apex_domain instead"
-  default     = ""
-}
-variable "domain_name" {
-  type        = string
-  description = "**Deprecated** Please use subdomain instead"
+  description = "The name of the parent/apex domain in which to create this domain zone, e.g. jenkins-x.io. Required if dns_enabled set to true"
   default     = ""
 }
 variable "subdomain" {
-  description = "Optional sub domain for the installation"
   type        = string
+  description = "The domain name of the zone to create, e.g. dev-subdomain. Required if dns_enabled set to true"
   default     = ""
 }
 variable "apex_resource_group_name" {
@@ -180,4 +166,13 @@ variable "storage_resource_group_name" {
   type        = string
   description = "Resource group to create in which to place storage accounts"
   default     = ""
+}
+
+// -----------------------------------------------------------------------------
+// Container Registry Variables
+// -----------------------------------------------------------------------------
+
+variable "external_registry_url" {
+  default = ""
+  type = string
 }

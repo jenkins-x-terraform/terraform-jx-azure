@@ -1,126 +1,49 @@
-terraform {
-  required_version = ">= 0.13.2"
-  required_providers {
-    random = {
-      version = ">=3.0.0"
-    }
-    kubernetes = {
-      version = ">=1.13.3"
-    }
-  }
-}
-
-provider "azurerm" {
-  features {
-    key_vault {
-      purge_soft_delete_on_destroy = false
-    }
-  }
-}
-
-provider "kubernetes" {
-  host = module.cluster.cluster_endpoint
-  cluster_ca_certificate = base64decode(
-    module.cluster.ca_certificate,
-  )
-  client_certificate = base64decode(
-    module.cluster.client_certificate,
-  )
-  client_key = base64decode(
-    module.cluster.client_key,
-  )
-}
-
-provider "helm" {
-  kubernetes {
-
-    host = module.cluster.cluster_endpoint
-    cluster_ca_certificate = base64decode(
-      module.cluster.ca_certificate,
-    )
-    client_certificate = base64decode(
-      module.cluster.client_certificate,
-    )
-    client_key = base64decode(
-      module.cluster.client_key,
-    )
-  }
-}
-
 module "cluster" {
-  source                           = "./terraform-jx-cluster-aks"
-  cluster_name                     = local.cluster_name
+  source                           = "./cluster"
+  apex_domain_integration_enabled  = var.apex_domain_integration_enabled
+  apex_domain                       = var.apex_domain
+  apex_resource_group_name         = var.apex_resource_group_name
+  cluster_name                     = var.cluster_name
   cluster_network_model            = var.cluster_network_model
   cluster_node_resource_group_name = var.cluster_node_resource_group_name
   cluster_resource_group_name      = var.cluster_resource_group_name
   cluster_version                  = var.cluster_version
+  dns_resource_group_name          = var.dns_resource_group_name
+  dns_prefix                       = var.dns_prefix
+  subdomain                        = var.subdomain
   enable_log_analytics             = var.enable_log_analytics
+  jx_bot_token                     = var.jx_bot_token
+  jx_git_url                       = var.jx_git_url
+  jx_bot_username                  = var.jx_bot_username
+  key_vault_enabled                = var.key_vault_enabled
+  key_vault_name                   = var.key_vault_name
+  key_vault_resource_group_name    = var.key_vault_resource_group_name
+  key_vault_sku                    = var.key_vault_sku
   location                         = var.location
   logging_retention_days           = var.logging_retention_days
-  network_resource_group_name      = var.network_resource_group_name
   network_name                     = var.network_name
+  network_resource_group_name      = var.network_resource_group_name
   node_count                       = var.node_count
   node_size                        = var.node_size
-  subnet_name                      = var.subnet_name
+  storage_resource_group_name      = var.storage_resource_group_name
   subnet_cidr                      = var.subnet_cidr
+  subnet_name                      = var.subnet_name
   vnet_cidr                        = var.vnet_cidr
-}
-
-module "registry" {
-  source       = "./terraform-jx-registry-acr"
-  cluster_name = local.cluster_name
-  principal_id = module.cluster.kubelet_identity_id
-  location     = var.location
-}
-
-module "jx-boot" {
-  source              = "./terraform-jx-boot"
-  depends_on          = [module.cluster]
-  jx_git_url          = var.jx_git_url
-  jx_bot_username     = var.jx_bot_username
-  jx_bot_token        = var.jx_bot_token
-  job_secret_env_vars = local.job_secret_env_vars
-  install_vault       = !var.key_vault_enabled
-}
-
-module "dns" {
-  source                          = "./terraform-jx-azuredns"
-  apex_domain_integration_enabled = var.apex_domain_integration_enabled
-  apex_domain                     = var.apex_domain
-  apex_resource_group_name        = var.apex_resource_group_name
-  cluster_name                    = local.cluster_name
-  subdomain                       = var.subdomain
-  location                        = var.location
-  principal_id                    = module.cluster.kubelet_identity_id
-  resource_group_name             = var.dns_resource_group_name
-}
-
-module "secrets" {
-  source              = "./terraform-jx-azurekeyvault"
-  enabled             = var.key_vault_enabled
-  principal_id        = module.cluster.kubelet_identity_id
-  cluster_name        = local.cluster_name
-  resource_group_name = var.key_vault_resource_group_name
-  key_vault_name      = var.key_vault_name
-  key_vault_sku       = var.key_vault_sku
-  location            = var.location
-  secret_map          = local.merged_secrets
-}
-
-module "storage" {
-  source               = "./terraform-jx-azure-storage"
-  resource_group_name  = var.storage_resource_group_name
-  cluster_name         = local.cluster_name
-  location             = var.location
-  storage_principal_id = module.cluster.kubelet_identity_id
 }
 
 output "connect" {
   description = "Connect to cluster"
   value       = module.cluster.connect
 }
-
+output "follow_install_logs" {
+  description = "Follow Jenkins X install logs"
+  value       = "jx admin log"
+}
+output "docs" {
+  description = "Follow Jenkins X 3.x docs for more information"
+  value       = "https://jenkins-x.io/v3/"
+}
 output "kube_config_admin" {
-  value     = module.cluster.kube_config_admin_raw
+  value     = module.cluster.kube_config_admin
   sensitive = true
 }
