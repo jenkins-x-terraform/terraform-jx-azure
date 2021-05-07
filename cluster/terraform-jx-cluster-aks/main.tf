@@ -6,7 +6,7 @@ terraform {
   required_version = ">= 0.13.2"
   required_providers {
     azurerm = {
-      version = ">=2.39.0"
+      version = ">=2.57.0"
     }
   }
 }
@@ -39,8 +39,6 @@ module "cluster" {
   depends_on               = [module.vnet]
   source                   = "./cluster"
   cluster_name             = var.cluster_name
-  node_count               = var.node_count
-  node_size                = var.node_size
   vnet_subnet_id           = module.vnet.subnet_id
   dns_prefix               = local.dns_prefix
   cluster_version          = var.cluster_version
@@ -51,6 +49,12 @@ module "cluster" {
   node_resource_group_name = local.cluster_node_resource_group_name
   enable_log_analytics     = var.enable_log_analytics
   logging_retention_days   = var.logging_retention_days
+  min_node_count           = var.min_node_count
+  max_node_count           = var.max_node_count
+  node_size                = var.node_size
+  min_ml_node_count        = var.min_ml_node_count
+  max_ml_node_count        = var.max_ml_node_count
+  ml_node_size             = var.ml_node_size
 }
 
 // ----------------------------------------------------------------------------

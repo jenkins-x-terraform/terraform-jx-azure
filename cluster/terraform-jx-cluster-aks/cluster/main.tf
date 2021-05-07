@@ -10,8 +10,11 @@ resource "azurerm_kubernetes_cluster" "aks" {
     name                 = "default"
     vm_size              = var.node_size
     vnet_subnet_id       = var.vnet_subnet_id
-    node_count           = var.node_count
+    node_count           = var.min_node_count
+    min_count            = var.min_node_count
+    max_count            = var.max_node_count
     orchestrator_version = var.cluster_version
+    enable_auto_scaling  = var.max_node_count == 0 ? false : true
   }
 
   network_profile {
@@ -52,3 +55,23 @@ resource "azurerm_kubernetes_cluster" "aks" {
     }
   }
 }
+
+resource "azurerm_kubernetes_cluster_node_pool" "mlnode" {
+  name                  = "mlnode"
+  kubernetes_cluster_id = azurerm_kubernetes_cluster.aks.id
+  vm_size               = var.ml_node_size
+  node_count           = var.min_node_count
+  min_count            = var.min_node_count
+  max_count            = var.max_node_count
+  orchestrator_version = var.cluster_version
+  enable_auto_scaling  = var.max_node_count == 0 ? false : true
+}
+
+/*resource "azurerm_virtual_machine_scale_set_extension" "GpuDriver" {
+  name                         = "NvidiaGpuDriverLinux"
+  virtual_machine_scale_set_id = azurerm_kubernetes_cluster.aks.id
+  publisher                    = "Microsoft.Azure.Extensions"
+  type                         = "Microsoft.HpcCompute.NvidiaGpuDriverLinux"
+  type_handler_version         = "1.2"
+  settings                     = "{}"
+}*/

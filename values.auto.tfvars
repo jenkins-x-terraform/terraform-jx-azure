@@ -13,8 +13,18 @@ dns_resource_group_name="jx3build-dns-rsg"
 key_vault_enabled=false
 key_vault_resource_group_name="jx3key-vault-rsg"
 key_vault_name="k8secrets-vault"
-node_count=5
+
+# Machines
+min_node_count=5
+max_node_count=20
 node_size="Standard_D4s_v3"
+min_ml_node_count=0
+max_ml_node_count=3
+ml_node_size="Standard_NV24s_v3"
+
+# Bot stuff
 jx_bot_username = "mqube-bot"
 jx_bot_token = "c74d56d996f4bd7cbb2ab20c28bae5295d754634"
+
+# External registry
 external_registry_url = "jfrogsomething.com"
