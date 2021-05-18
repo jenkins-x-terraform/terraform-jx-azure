@@ -71,7 +71,7 @@ variable "dns_prefix" {
 }
 variable "cluster_version" {
   type        = string
-  default     = "1.18.10"
+  default     = "1.20.2"
   description = "Kubernetes version to use for the AKS cluster"
 }
 variable "network_resource_group_name" {
