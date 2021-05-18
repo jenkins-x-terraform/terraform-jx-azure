@@ -1,4 +1,4 @@
-jx_git_url = "https://github.com/spring-financial-group/jx3-azure-akv-Dev-Build-KeyVault"
+jx_git_url = "https://github.com/spring-financial-group/JX3_Azure_Vault_Dev_Cluster"
 cluster_name = "jx3-mqube-build"
 location="uksouth"
 network_resource_group_name="mqubejx3build-network_rsg"
