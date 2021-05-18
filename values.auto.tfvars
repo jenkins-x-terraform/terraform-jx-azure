@@ -22,9 +22,7 @@ min_ml_node_count=0
 max_ml_node_count=3
 ml_node_size="Standard_NV24s_v3"
 
-# Bot stuff
-jx_bot_username = "mqube-bot"
-jx_bot_token = "c74d56d996f4bd7cbb2ab20c28bae5295d754634"
+# Bot stuff in now in terraform
 
-# External registry
-external_registry_url = "jfrogsomething.com"
+# External registry not used at the moment
+external_registry_url = ""
