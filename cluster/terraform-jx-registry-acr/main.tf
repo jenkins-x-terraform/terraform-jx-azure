@@ -22,7 +22,7 @@ resource "azurerm_container_registry" "acr" {
   name                = local.container_registry_name
   resource_group_name = azurerm_resource_group.acr[0].name
   location            = var.location
-  sku                 = "Basic"
+  sku                 = "Standard"
   admin_enabled       = true
 }
 
