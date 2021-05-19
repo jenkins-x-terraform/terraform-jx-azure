@@ -18,8 +18,8 @@ key_vault_name="k8secrets-vault"
 min_node_count=5
 max_node_count=20
 node_size="Standard_D4s_v3"
-min_ml_node_count=0
-max_ml_node_count=2
+min_ml_node_count=2
+max_ml_node_count=5
 ml_node_size="Standard_NV24s_v3"
 
 # Bot stuff in now in terraform
