@@ -6,6 +6,6 @@ spec:
         - https://github.com/jx3-gitops-repositories/jx3-terraform-azure
       changes:
         - regex:
-            pattern: "terraform-jx-azure\?ref=(.*)\""
+            pattern: terraform-jx-azure\?ref=(.*)"
             files:
               - "main.tf"
