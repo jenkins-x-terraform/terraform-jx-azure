@@ -60,6 +60,7 @@ resource "azurerm_kubernetes_cluster_node_pool" "mlnode" {
   name                  = "mlnode"
   kubernetes_cluster_id = azurerm_kubernetes_cluster.aks.id
   vm_size               = var.ml_node_size
+  vnet_subnet_id       = var.vnet_subnet_id
   node_count           = var.min_ml_node_count
   min_count            = var.min_ml_node_count
   max_count            = var.max_ml_node_count
