@@ -127,7 +127,6 @@ variable "logging_retention_days" {
 // ----------------------------------------------------------------------------
 // DNS variables
 // ---------------------------------------------------------------------------
-
 variable "apex_domain_integration_enabled" {
   type        = bool
   default     = true

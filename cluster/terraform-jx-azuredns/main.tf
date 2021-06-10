@@ -10,6 +10,7 @@ terraform {
 data "azurerm_dns_zone" "apex_domain_zone" {
   count = var.apex_domain != "" ? 1 : 0
   name  = var.apex_domain
+  resource_group_name = var.apex_resource_group_name
 }
 
 data "azurerm_subscription" "current" {
@@ -33,7 +34,7 @@ resource "azurerm_dns_ns_record" "subdomain_ns_delegation" {
   zone_name           = data.azurerm_dns_zone.apex_domain_zone.0.name
   resource_group_name = var.apex_resource_group_name
   ttl                 = 60
-  records             = azurerm_dns_zone.dns[0].name_servers
+  records             = length(azurerm_dns_zone.dns) == 0 ? "" : azurerm_dns_zone.dns[0].name_servers
   depends_on          = [azurerm_dns_zone.dns]
 }
 
