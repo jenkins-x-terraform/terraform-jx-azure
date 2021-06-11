@@ -21,3 +21,15 @@ variable "principal_id" {
   description = "Principal id of the identity to give authorisation to push/pull to container registry"
   type        = string
 }
+
+variable "use_existing_acr_name" {
+  description = "Name of the existing ACR that you would like to use, e.g. use this in multicluster setup, when you want to use DEV cluster ACR."
+  type        = string
+  default     = null
+}
+
+variable "use_existing_acr_resource_group_name" {
+  description = "Name of the resources group of the existing ACR that you would like to use, e.g. use this in multicluster setup, when you want to use DEV cluster ACR."
+  type        = string
+  default     = null
+}
