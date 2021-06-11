@@ -67,10 +67,12 @@ module "cluster" {
 }
 
 module "registry" {
-  source       = "./terraform-jx-registry-acr"
-  cluster_name = local.cluster_name
-  principal_id = module.cluster.kubelet_identity_id
-  location     = var.location
+  source                               = "./terraform-jx-registry-acr"
+  cluster_name                         = local.cluster_name
+  principal_id                         = module.cluster.kubelet_identity_id
+  location                             = var.location
+  use_existing_acr_name                = var.use_existing_acr_name
+  use_existing_acr_resource_group_name = var.use_existing_acr_resource_group_name
 }
 
 module "jx-boot" {
