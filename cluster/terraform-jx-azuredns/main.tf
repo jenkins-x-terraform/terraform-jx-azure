@@ -39,7 +39,7 @@ resource "azurerm_dns_ns_record" "subdomain_ns_delegation" {
 }
 
 resource "azurerm_role_assignment" "Give_ExternalDNS_SP_Contributor_Access_to_ResourceGroup" {
-  count                = 1
+  count                = var.subdomain != "" ?  1 : 0
   scope                = azurerm_resource_group.dns.0.id
   role_definition_name = "DNS Zone Contributor"
   principal_id         = var.principal_id
