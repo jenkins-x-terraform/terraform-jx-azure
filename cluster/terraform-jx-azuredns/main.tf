@@ -44,3 +44,10 @@ resource "azurerm_role_assignment" "Give_ExternalDNS_SP_Contributor_Access_to_Re
   role_definition_name = "DNS Zone Contributor"
   principal_id         = var.principal_id
 }
+
+resource "azurerm_role_assignment" "Give_ExternalDNS_SP_Contributor_Access_to_ApexResourceGroup" {
+  count                = var.apex_domain != "" && var.subdomain == "" ?  1 : 0
+  scope                = data.azurerm_dns_zone.apex_domain_zone.0.id
+  role_definition_name = "DNS Zone Contributor"
+  principal_id         = var.principal_id
+}
