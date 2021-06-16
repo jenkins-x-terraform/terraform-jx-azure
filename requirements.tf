@@ -6,7 +6,7 @@ locals {
     apex_domain          = var.apex_domain
     subdomain            = var.subdomain
     domain_enabled       = var.apex_domain != "" ? true : false
-    dns_resource_group   = module.dns.resource_group_name
+    dns_resource_group   = var.subdomain == "" ? var.apex_resource_group_name : module.dns.resource_group_name
     dns_tenant_id        = module.dns.tenant_id
     dns_subscription_id  = module.dns.subscription_id
     key_vault_enabled    = var.key_vault_enabled
