@@ -183,6 +183,12 @@ variable "key_vault_sku" {
 // ----------------------------------------------------------------------------
 // Registry variables
 // ---------------------------------------------------------------------------
+variable "registry_resource_group_name" {
+  type        = string
+  default     = ""
+  description = "The name of the resource group in to which to provision ACR managed registry. The script will create a random name if this is empty"
+}
+
 variable "use_existing_acr_name" {
   description = "Name of the existing ACR that you would like to use, e.g. use this in multicluster setup, when you want to use DEV cluster ACR."
   type        = string
