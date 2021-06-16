@@ -3,7 +3,7 @@ kind: Requirements
 spec:
   cluster:
     provider: aks
-    registry: ${registry_url}
+    registry: ${registry_name}
     azure:
       storage:
         storageAccountName: ${storage_account_name}
