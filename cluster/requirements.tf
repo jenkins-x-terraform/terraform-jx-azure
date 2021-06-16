@@ -2,6 +2,7 @@ locals {
   jx_requirements_interpolated_content = templatefile("${path.module}/jx-requirements.yml.tpl", {
 
     registry_url         = module.registry.registry_url
+    registry_name        = lower("${module.registry.registry_name}.azurecr.io")
     domain               = module.dns.domain
     apex_domain          = var.apex_domain
     subdomain            = var.subdomain

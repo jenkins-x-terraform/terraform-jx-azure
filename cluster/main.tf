@@ -75,6 +75,8 @@ module "registry" {
   principal_id = module.cluster.kubelet_identity_id
   location     = var.location
   external_registry_url = var.external_registry_url
+  use_existing_acr_name = var.use_existing_acr_name
+  use_existing_acr_resource_group_name = var.use_existing_acr_resource_group_name
 }
 
 module "jx-boot" {
