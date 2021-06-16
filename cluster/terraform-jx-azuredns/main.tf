@@ -17,7 +17,7 @@ data "azurerm_subscription" "current" {
 }
 
 resource "azurerm_resource_group" "dns" {
-  count    = 1
+  count    = var.subdomain != "" ?  1 : 0
   name     = local.resource_group_name
   location = var.location
 }
