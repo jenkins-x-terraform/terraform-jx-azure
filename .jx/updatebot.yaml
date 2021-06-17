@@ -6,6 +6,6 @@ spec:
         - https://github.com/jenkins-x/jx3-versions
       changes:
         - regex:
-            pattern: version: (.*)
+            pattern: version:\s(.*)
             files:
               - "git/github.com/jenkins-x-terraform/terraform-jx-azure.yml"
