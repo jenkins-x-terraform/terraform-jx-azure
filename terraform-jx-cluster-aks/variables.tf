@@ -1,14 +1,53 @@
+// ----------------------------------------------------------------------------
+// Machine variables
+// ----------------------------------------------------------------------------
+variable "node_size" {
+  type        = string
+  default     = "Standard_B2ms"
+  description = "The size of the worker node to use for the cluster"
+}
+variable "node_count" {
+  description = "The number of worker nodes to use for the cluster"
+  type        = number
+  default     = 2
+}
+variable "min_node_count" {
+  description = "The minimum number of worker nodes to use for the cluster if autoscaling is enabled"
+  type        = number
+  default     = 0
+}
+variable "max_node_count" {
+  description = "The maximum number of worker nodes to use for the cluster if autoscaling is enabled"
+  type        = number
+  default     = 0
+}
+variable "ml_node_size" {
+  type        = string
+  default     = ""
+  description = "The size of the worker node to use for the cluster"
+}
+variable "ml_node_count" {
+  description = "The number of ML nodes to use for the cluster"
+  type        = number
+  default     = 0
+}
+variable "min_ml_node_count" {
+  description = "The minimum number of ML nodes to use for the cluster if autoscaling is enabled"
+  type        = number
+  default     = 0
+}
+variable "max_ml_node_count" {
+  description = "The maximum number of ML nodes to use for the cluster if autoscaling is enabled"
+  type        = number
+  default     = 0
+}
+
+// ----------------------------------------------------------------------------
+// Cluster variables
+// ----------------------------------------------------------------------------
 variable "cluster_name" {
   type    = string
   default = ""
-}
-variable "node_count" {
-  type    = number
-  default = 2
-}
-variable "node_size" {
-  type    = string
-  default = "Standard_B2ms"
 }
 variable "dns_prefix" {
   type    = string
