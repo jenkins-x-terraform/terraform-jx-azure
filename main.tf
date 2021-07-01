@@ -25,10 +25,11 @@ module "cluster" {
   location                             = var.location
   logging_retention_days               = var.logging_retention_days
   network_name                         = var.network_name
-  network_resource_group_name          = var.network_resource_group_name
+  node_count                           = var.node_count
   min_node_count                       = var.min_node_count
   max_node_count                       = var.max_node_count
   node_size                            = var.node_size
+  ml_node_count                        = var.ml_node_count
   min_ml_node_count                    = var.min_ml_node_count
   max_ml_node_count                    = var.max_ml_node_count
   ml_node_size                         = var.ml_node_size

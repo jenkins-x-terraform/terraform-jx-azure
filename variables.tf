@@ -35,30 +35,40 @@ variable "node_size" {
   default     = "Standard_B2ms"
   description = "The size of the worker node to use for the cluster"
 }
-variable "min_node_count" {
+variable "node_count" {
   description = "The number of worker nodes to use for the cluster"
   type        = number
   default     = 2
 }
-variable "max_node_count" {
-  description = "The number of worker nodes to use for the cluster"
+variable "min_node_count" {
+  description = "The minimum number of worker nodes to use for the cluster if autoscaling is enabled"
   type        = number
-  default     = 2
+  default     = null
+}
+variable "max_node_count" {
+  description = "The maximum number of worker nodes to use for the cluster if autoscaling is enabled"
+  type        = number
+  default     = null
 }
 variable "ml_node_size" {
   type        = string
-  default     = "Standard_B2ms"
-  description = "The size of the worker node to use for the cluster"
+  default     = ""
+  description = "The size of the ML node to use for the cluster"
+}
+variable "ml_node_count" {
+  description = "The number of ML nodes to use for the cluster"
+  type        = number
+  default     = null
 }
 variable "min_ml_node_count" {
-  description = "The number of worker nodes to use for the cluster"
+  description = "The minimum number of ML nodes to use for the cluster if autoscaling is enabled"
   type        = number
-  default     = 2
+  default     = null
 }
 variable "max_ml_node_count" {
-  description = "The number of worker nodes to use for the cluster"
+  description = "The maximum number of ML nodes to use for the cluster if autoscaling is enabled"
   type        = number
-  default     = 2
+  default     = null
 }
 
 // ----------------------------------------------------------------------------
