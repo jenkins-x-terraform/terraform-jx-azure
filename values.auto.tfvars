@@ -15,8 +15,8 @@ key_vault_resource_group_name="jx3key-vault-rsg"
 key_vault_name="k8secrets-vault"
 
 # Machines
-min_node_count=5
-max_node_count=20
+min_node_count=10
+max_node_count=30
 node_size="Standard_D4s_v3"
 min_ml_node_count=2
 max_ml_node_count=5
