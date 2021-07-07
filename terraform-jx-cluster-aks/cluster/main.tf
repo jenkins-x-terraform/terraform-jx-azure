@@ -14,7 +14,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
     min_count            = var.min_node_count
     max_count            = var.max_node_count
     orchestrator_version = var.cluster_version
-    enable_auto_scaling  = var.max_node_count == 0 ? false : true
+    enable_auto_scaling  = var.max_node_count == null ? false : true
   }
 
   network_profile {
@@ -66,5 +66,5 @@ resource "azurerm_kubernetes_cluster_node_pool" "mlnode" {
   min_count            = var.min_ml_node_count
   max_count            = var.max_ml_node_count
   orchestrator_version = var.cluster_version
-  enable_auto_scaling  = var.max_ml_node_count == 0 ? false : true
+  enable_auto_scaling  = var.max_ml_node_count == null ? false : true
 }

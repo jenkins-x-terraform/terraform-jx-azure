@@ -42,12 +42,12 @@ variable "node_count" {
 variable "min_node_count" {
   description = "The minimum number of worker nodes to use for the cluster if autoscaling is enabled"
   type        = number
-  default     = 0
+  default     = null
 }
 variable "max_node_count" {
   description = "The maximum number of worker nodes to use for the cluster if autoscaling is enabled"
   type        = number
-  default     = 0
+  default     = null
 }
 variable "ml_node_size" {
   type        = string
@@ -57,17 +57,17 @@ variable "ml_node_size" {
 variable "ml_node_count" {
   description = "The number of ML nodes to use for the cluster"
   type        = number
-  default     = 0
+  default     = null
 }
 variable "min_ml_node_count" {
   description = "The minimum number of ML nodes to use for the cluster if autoscaling is enabled"
   type        = number
-  default     = 0
+  default     = null
 }
 variable "max_ml_node_count" {
   description = "The maximum number of ML nodes to use for the cluster if autoscaling is enabled"
   type        = number
-  default     = 0
+  default     = null
 }
 
 // ----------------------------------------------------------------------------
