@@ -17,6 +17,12 @@ variable "jx_git_url" {
   description = "URL for the Jenkins X cluster git repository"
   type        = string
 }
+variable "jx_git_operator_version" {
+  description = "Version of the Jenkins Git Operator to install via the jx-operator chart"
+  type        = string
+  default     = "0.0.194"
+}
+
 variable "jx_bot_username" {
   description = "Bot username used to interact with the Jenkins X cluster git repository"
   type        = string
