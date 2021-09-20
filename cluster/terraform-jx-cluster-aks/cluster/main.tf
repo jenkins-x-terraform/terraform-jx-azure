@@ -57,14 +57,14 @@ resource "azurerm_kubernetes_cluster" "aks" {
 }
 
 resource "azurerm_kubernetes_cluster_node_pool" "mlnode" {
-  count                = var.ml_node_size == "" ? 0 : 1
-  name                 = "mlnode"
-  kubernetes_cluster_id= azurerm_kubernetes_cluster.aks.id
-  vm_size              = var.ml_node_size
-  vnet_subnet_id       = var.vnet_subnet_id
-  node_count           = var.ml_node_count
-  min_count            = var.min_ml_node_count
-  max_count            = var.max_ml_node_count
-  orchestrator_version = var.cluster_version
-  enable_auto_scaling  = var.max_ml_node_count == null ? false : true
+  count                 = var.ml_node_size == "" ? 0 : 1
+  name                  = "mlnode"
+  kubernetes_cluster_id = azurerm_kubernetes_cluster.aks.id
+  vm_size               = var.ml_node_size
+  vnet_subnet_id        = var.vnet_subnet_id
+  node_count            = var.ml_node_count
+  min_count             = var.min_ml_node_count
+  max_count             = var.max_ml_node_count
+  orchestrator_version  = var.cluster_version
+  enable_auto_scaling   = var.max_ml_node_count == null ? false : true
 }
