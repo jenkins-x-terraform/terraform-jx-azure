@@ -57,12 +57,6 @@ module "cluster" {
   min_ml_node_count                = var.min_ml_node_count
   max_ml_node_count                = var.max_ml_node_count
   ml_node_size                     = var.ml_node_size
-  use_spot                         = var.use_spot
-  spot_max_price                   = var.spot_max_price
-  build_node_size                  = var.build_node_size
-  build_node_count                 = var.build_node_count
-  min_build_node_count             = var.min_build_node_count
-  max_build_node_count             = var.max_build_node_count
   active_directory_admin_group_ids = var.active_directory_admin_group_ids
 }
 
