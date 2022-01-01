@@ -70,7 +70,6 @@ module "cluster" {
   subnet_name                      = var.subnet_name
   subnet_cidr                      = var.subnet_cidr
   vnet_cidr                        = var.vnet_cidr
-  active_directory_admin_group_ids = var.active_directory_admin_group_ids
 }
 
 module "registry" {

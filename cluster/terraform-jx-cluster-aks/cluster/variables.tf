@@ -80,6 +80,3 @@ variable "enable_log_analytics" {
 variable "logging_retention_days" {
   type = number
 }
-variable "active_directory_admin_group_ids" {
-  type = list
-}

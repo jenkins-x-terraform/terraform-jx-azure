@@ -134,11 +134,6 @@ variable "logging_retention_days" {
   default     = 30
   description = "Number of days to retain logs in Log Analytics if enabled"
 }
-variable "active_directory_admin_group_ids" {
-  type = list
-  default = null
-  description = "Group ids within Active Directory to be made administrators of the cluster"
-}
 
 // ----------------------------------------------------------------------------
 // DNS variables

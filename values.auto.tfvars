@@ -13,7 +13,6 @@ dns_resource_group_name="jx3build-dns-rsg"
 key_vault_enabled=false
 key_vault_resource_group_name="jx3key-vault-rsg"
 key_vault_name="k8secrets-vault"
-active_directory_admin_group_ids=["c7a11762-ecd1-4088-ac6b-db6a2be63dc8"]
 
 # Machines
 min_node_count=5
