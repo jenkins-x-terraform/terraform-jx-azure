@@ -142,3 +142,7 @@ variable "logging_retention_days" {
   type    = number
   default = 30
 }
+variable "active_directory_admin_group_ids" {
+  type = list
+  default = null
+}
