@@ -44,6 +44,7 @@ module "cluster" {
   subnet_cidr                          = var.subnet_cidr
   subnet_name                          = var.subnet_name
   vnet_cidr                            = var.vnet_cidr
+  active_directory_admin_group_ids     = var.active_directory_admin_group_ids
 }
 
 output "connect" {
