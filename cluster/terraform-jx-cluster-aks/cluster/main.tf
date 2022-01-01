@@ -70,9 +70,9 @@ resource "azurerm_kubernetes_cluster_node_pool" "mlnode" {
   node_taints = ["sku=gpu:NoSchedule"]
 }
 
-resource "azurerm_kubernetes_cluster_node_pool" "buildpods" {
+resource "azurerm_kubernetes_cluster_node_pool" "buildnode" {
   count                 = var.build_node_size == "" ? 0 : 1
-  name                  = "buildnodes"
+  name                  = "buildnode"
   priority              = var.use_spot ? "Spot" : "Regular"
   eviction_policy       = var.use_spot ? "Deallocate" : null
   spot_max_price        = var.use_spot ? var.spot_max_price : null
