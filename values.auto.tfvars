@@ -34,3 +34,6 @@ max_build_node_count = 6
 
 # External registry not used at the moment
 external_registry_url = ""
+
+
+server_side_apply_enabled = true

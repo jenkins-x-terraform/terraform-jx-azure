@@ -18,4 +18,6 @@ locals {
     AZURE_TENANT_ID       = module.secrets.tenant_id
     AZURE_SUBSCRIPTION_ID = module.secrets.subscription_id
   } : {}
+
+  job_secret_env_vars = concat(var.server_side_apply_enabled ? [KUBECTL_APPLY_FLAGS       = "--server-side --force-conflicts"]:[])
 }
