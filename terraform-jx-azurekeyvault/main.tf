@@ -6,7 +6,7 @@ terraform {
   required_version = ">= 0.13.2"
   required_providers {
     azurerm = {
-      version = ">=2.41.0"
+      version = ">=2.48.0, <= 2.61.0"
     }
   }
 }
@@ -52,7 +52,7 @@ resource "azurerm_key_vault_access_policy" "jx" {
   secret_permissions = [
     "get",
     "set",
-    "delete",
+    "Delete",
   ]
 }
 
@@ -65,6 +65,6 @@ resource "azurerm_key_vault_access_policy" "terraform" {
   secret_permissions = [
     "get",
     "set",
-    "delete",
+    "Delete",
   ]
 }
