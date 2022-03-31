@@ -6,8 +6,13 @@ terraform {
   required_version = ">= 0.13.2"
   required_providers {
     azurerm = {
-      version = ">=2.48.0, <= 2.61.0"
+      version = "~>3.0.1"
     }
+  }
+}
+
+provider "azurerm" {
+  features {
   }
 }
 
@@ -46,12 +51,12 @@ resource "azurerm_key_vault" "jx" {
 resource "azurerm_key_vault_access_policy" "jx" {
   count        = var.enabled ? 1 : 0
   key_vault_id = azurerm_key_vault.jx.0.id
-  object_id    = var.principal_id
+  object_id    = data.azurerm_client_config.current.object_id
   tenant_id    = local.tenant_id
 
   secret_permissions = [
-    "get",
-    "set",
+    "Get",
+    "Set",
     "Delete",
   ]
 }
@@ -63,8 +68,8 @@ resource "azurerm_key_vault_access_policy" "terraform" {
   tenant_id    = local.tenant_id
 
   secret_permissions = [
-    "get",
-    "set",
+    "Get",
+    "Set",
     "Delete",
   ]
 }

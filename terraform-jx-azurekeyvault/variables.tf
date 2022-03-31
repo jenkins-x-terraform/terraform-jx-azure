@@ -25,10 +25,10 @@ variable "key_vault_sku" {
   description = "SKU of the Key Vault resource to create. Valid values are standard or premium"
   default     = "standard"
 }
-variable "principal_id" {
-  type        = string
-  description = "The id of the service principal that should be granted permission on the key vault"
-}
+# variable "principal_id" {
+#   type        = string
+#   description = "The id of the service principal that should be granted permission on the key vault"
+# }
 variable "secret_map" {
   type        = map(string)
   description = "Map of secret keys and values to store in Azure Key Vault"
