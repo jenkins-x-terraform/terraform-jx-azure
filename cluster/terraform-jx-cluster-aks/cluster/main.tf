@@ -15,8 +15,12 @@ resource "azurerm_kubernetes_cluster" "aks" {
     max_count            = var.max_node_count
     orchestrator_version = var.cluster_version
     enable_auto_scaling  = var.max_node_count == null ? false : true
+    
   }
-
+    lifecycle {
+      ignore_changes = [node_count]
+  }
+  
   network_profile {
     network_plugin = var.cluster_network_model
   }
@@ -51,7 +55,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
       enabled = false
     }
     kube_dashboard {
-      enabled = false
+      enabled = fals
     }
   }
 }
