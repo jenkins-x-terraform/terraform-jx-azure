@@ -11,11 +11,12 @@ data "azurerm_subscription" "current" {
 }
 
 data "azurerm_dns_zone" "apex_domain_zone" {
-  count = local.enabled ? 1 : 0
+  count = local.enabled && var.apex_domain_integration_enabled ? 1 : 0
   name  = var.apex_domain
 }
 
 data "azurerm_resource_group" "apex_resource_group" {
+  count = local.enabled && var.apex_domain_integration_enabled ? 1 : 0
   name = var.apex_resource_group_name
 }
 
@@ -50,7 +51,7 @@ resource "azurerm_role_assignment" "Give_ExternalDNS_SP_Contributor_Access_to_Re
 
 resource "azurerm_role_assignment" "Give_ExternalDNS_SP_Contributor_Access_to_ResourceGroup_to_Apex" {
   count                = !local.with_subdomain && var.apex_domain_integration_enabled ? 1 : 0
-  scope                = data.azurerm_resource_group.apex_resource_group.id
+  scope                = data.azurerm_resource_group.apex_resource_group.0.id
   role_definition_name = "DNS Zone Contributor"
   principal_id         = var.principal_id
 }
