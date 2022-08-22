@@ -16,7 +16,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
     orchestrator_version = var.cluster_version
     enable_auto_scaling  = var.max_node_count == null ? false : true
     upgrade_settings {
-      max_surge = 25%
+      max_surge = "25%"
     }
   }
 
