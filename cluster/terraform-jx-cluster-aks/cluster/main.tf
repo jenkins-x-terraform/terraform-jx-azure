@@ -62,10 +62,13 @@ resource "azurerm_kubernetes_cluster" "aks" {
 resource "azurerm_kubernetes_cluster_node_pool" "mlnode" {
   count                 = var.ml_node_size == "" ? 0 : 1
   name                  = "mlnode"
+  priority              = var.use_spot_ml ? "Spot" : "Regular"
+  eviction_policy       = var.use_spot_ml ? "Deallocate" : null
+  spot_max_price        = var.use_spot_ml ? var.spot_max_price_ml : null
   kubernetes_cluster_id = azurerm_kubernetes_cluster.aks.id
   vm_size               = var.ml_node_size
   vnet_subnet_id        = var.vnet_subnet_id
-  node_count            = var.ml_node_count
+  node_count            = var.use_spot_ml ? 0 : var.ml_node_count
   min_count             = var.min_ml_node_count
   max_count             = var.max_ml_node_count
   orchestrator_version  = var.cluster_version
@@ -99,7 +102,7 @@ resource "azurerm_kubernetes_cluster_node_pool" "infranode" {
   kubernetes_cluster_id = azurerm_kubernetes_cluster.aks.id
   vm_size               = var.infra_node_size
   vnet_subnet_id        = var.vnet_subnet_id
-  node_count            = var.use_spot ? 0 : var.build_node_count
+  node_count            = var.use_spot_infra ? 0 : var.infra_node_count
   min_count             = var.min_infra_node_count
   max_count             = var.max_infra_node_count
   orchestrator_version  = var.cluster_version
