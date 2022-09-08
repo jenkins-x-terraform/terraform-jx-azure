@@ -89,3 +89,20 @@ resource "azurerm_kubernetes_cluster_node_pool" "buildnode" {
   enable_auto_scaling   = var.max_build_node_count == null ? false : true
   node_taints = ["sku=build:NoSchedule"]
 }
+
+resource "azurerm_kubernetes_cluster_node_pool" "infranode" {
+  count                 = var.infra_node_size == "" ? 0 : 1
+  name                  = "infranode"
+  priority              = var.use_spot_infra ? "Spot" : "Regular"
+  eviction_policy       = var.use_spot_infra ? "Deallocate" : null
+  spot_max_price        = var.use_spot_infra ? var.spot_max_price_infra : null
+  kubernetes_cluster_id = azurerm_kubernetes_cluster.aks.id
+  vm_size               = var.infra_node_size
+  vnet_subnet_id        = var.vnet_subnet_id
+  node_count            = var.use_spot ? 0 : var.build_node_count
+  min_count             = var.min_infra_node_count
+  max_count             = var.max_infra_node_count
+  orchestrator_version  = var.cluster_version
+  enable_auto_scaling   = var.max_infra_node_count == null ? false : true
+  node_taints = ["sku=build:NoSchedule"]
+}

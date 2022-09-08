@@ -25,11 +25,19 @@ min_ml_node_count=1
 max_ml_node_count=5
 ml_node_size="Standard_NV24s_v3"
 
-# Spot Nodes
+# Build Spot Nodes
 use_spot=true
 build_node_size="Standard_D8s_v4"
 min_build_node_count = 0
 max_build_node_count = 6
+
+#Infra Node
+use_spot_infra = true
+infra_node_size = "Standard_D8s_v3"
+min_infra_node_count = 0
+max_infra_node_count = 6
+
+
 # Bot stuff in now in terraform
 
 # External registry not used at the moment
