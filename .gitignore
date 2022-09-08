@@ -5,4 +5,3 @@
 secrets.auto.tfvars
 .terraform.lock.hcl
 .terraform.tfstate.lock.info
-test
