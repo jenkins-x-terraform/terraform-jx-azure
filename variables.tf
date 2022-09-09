@@ -62,6 +62,18 @@ variable "max_node_count" {
 // ----------------------------------------------------------------------------
 // Machine learning nodepool variables
 // ----------------------------------------------------------------------------
+variable "use_spot_ml" {
+  type        = bool
+  default     = true
+  description = "Should we use spot instances for the ml nodes"
+}
+
+variable "spot_max_price_ml" {
+  type        = number
+  default     = -1
+  description = "The maximum price you're willing to pay in USD per virtual machine, -1 to go to the maximum price"
+}
+
 variable "ml_node_size" {
   type        = string
   default     = ""
@@ -86,6 +98,7 @@ variable "max_ml_node_count" {
 // ----------------------------------------------------------------------------
 // Build nodepool variables
 // ----------------------------------------------------------------------------
+
 variable "use_spot" {
   type        = bool
   default     = true
@@ -113,6 +126,40 @@ variable "min_build_node_count" {
 }
 variable "max_build_node_count" {
   description = "The maximum number of builder nodes to use for the cluster if autoscaling is enabled"
+  type        = number
+  default     = null
+}
+
+// ----------------------------------------------------------------------------
+// Infra nodepool variables
+// ----------------------------------------------------------------------------
+variable "use_spot_infra" {
+  type        = bool
+  default     = true
+  description = "Should we use spot instances for the infra nodes"
+}
+variable "spot_max_price_infra" {
+  type        = number
+  default     = -1
+  description = "The maximum price you're willing to pay in USD per virtual machine, -1 to go to the maximum price"
+}
+variable "infra_node_size" {
+  type        = string
+  default     = ""
+  description = "The size of the infra node to use for the cluster"
+}
+variable "infra_node_count" {
+  description = "The number of infra nodes to use for the cluster"
+  type        = number
+  default     = null
+}
+variable "min_infra_node_count" {
+  description = "The minimum number of infra nodes to use for the cluster if autoscaling is enabled"
+  type        = number
+  default     = null
+}
+variable "max_infra_node_count" {
+  description = "The maximum number of infra nodes to use for the cluster if autoscaling is enabled"
   type        = number
   default     = null
 }
