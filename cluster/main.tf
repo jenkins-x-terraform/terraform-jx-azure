@@ -153,3 +153,4 @@ output "kube_config_admin" {
   value     = module.cluster.kube_config_admin_raw
   sensitive = true
 }
+
