@@ -3,7 +3,7 @@
 //
 // ----------------------------------------------------------------------------
 terraform {
-  required_version = ">= 0.13.2"
+  required_version = ">= 1.3.2"
   required_providers {
     azurerm = {
       version = ">=2.48.0, <= 2.300.0"
