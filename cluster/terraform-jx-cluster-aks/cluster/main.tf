@@ -108,6 +108,8 @@ resource "azurerm_kubernetes_cluster_node_pool" "infranode" {
   orchestrator_version  = var.cluster_version
   enable_auto_scaling   = var.max_infra_node_count == null ? false : true
   node_taints = ["sku=infra:NoSchedule"]
+
+  lifecycle {ignore_changes = [node_taints, node_count]}
 }
 
 resource "azurerm_kubernetes_cluster_node_pool" "mlbuildnode" {
