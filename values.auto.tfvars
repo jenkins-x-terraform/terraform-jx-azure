@@ -13,7 +13,7 @@ dns_resource_group_name="jx3build-dns-rsg"
 key_vault_enabled=false
 key_vault_resource_group_name="jx3key-vault-rsg"
 key_vault_name="k8secrets-vault"
-cluster_version = "1.22.11"
+cluster_version = "1.23.12"
 
 # Machines
 min_node_count=5
@@ -23,13 +23,13 @@ node_size="Standard_D4s_v3"
 # Ml nodes
 use_spot_ml = true
 ml_node_size="Standard_NV24s_v3"
-min_ml_node_count=1
+min_ml_node_count=0
 max_ml_node_count=5
 
 # Build Spot Nodes
 use_spot=true
 build_node_size="Standard_D8s_v4"
-min_build_node_count = 1
+min_build_node_count = 0
 max_build_node_count = 6
 
 #Infra Node
@@ -37,6 +37,12 @@ use_spot_infra = false
 infra_node_size = "Standard_D8s_v3"
 min_infra_node_count = 0
 max_infra_node_count = 6
+
+# MLbuild Node
+use_spot_mlbuild = true
+mlbuild_node_size = "Standard_NC4as_T4_v3"
+min_mlbuild_node_count = 0
+max_mlbuild_node_count = 5
 
 
 # Bot stuff in now in terraform

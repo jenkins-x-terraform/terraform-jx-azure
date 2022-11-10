@@ -3,7 +3,7 @@
 //
 // ----------------------------------------------------------------------------
 terraform {
-  required_version = ">= 0.13.2"
+  required_version = ">= 1.3.2"
   required_providers {
     azurerm = {
       version = ">=2.57.0"
@@ -71,6 +71,12 @@ module "cluster" {
   infra_node_count                 = var.infra_node_count
   min_infra_node_count             = var.min_infra_node_count
   max_infra_node_count             = var.max_infra_node_count
+  use_spot_mlbuild                 = var.use_spot_mlbuild
+  spot_max_price_mlbuild           = var.spot_max_price_mlbuild
+  mlbuild_node_size                = var.mlbuild_node_size
+  mlbuild_node_count               = var.mlbuild_node_count
+  min_mlbuild_node_count           = var.min_mlbuild_node_count
+  max_mlbuild_node_count           = var.max_mlbuild_node_count
 }
 
 // ----------------------------------------------------------------------------

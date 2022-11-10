@@ -74,6 +74,8 @@ resource "azurerm_kubernetes_cluster_node_pool" "mlnode" {
   orchestrator_version  = var.cluster_version
   enable_auto_scaling   = var.max_ml_node_count == null ? false : true
   node_taints = ["sku=gpu:NoSchedule"]
+  
+  lifecycle {ignore_changes = [node_taints, node_count]}
 }
 
 resource "azurerm_kubernetes_cluster_node_pool" "buildnode" {
@@ -91,6 +93,8 @@ resource "azurerm_kubernetes_cluster_node_pool" "buildnode" {
   orchestrator_version  = var.cluster_version
   enable_auto_scaling   = var.max_build_node_count == null ? false : true
   node_taints = ["sku=build:NoSchedule"]
+
+  lifecycle {ignore_changes = [node_taints, node_count]}
 }
 
 resource "azurerm_kubernetes_cluster_node_pool" "infranode" {
@@ -108,4 +112,25 @@ resource "azurerm_kubernetes_cluster_node_pool" "infranode" {
   orchestrator_version  = var.cluster_version
   enable_auto_scaling   = var.max_infra_node_count == null ? false : true
   node_taints = ["sku=infra:NoSchedule"]
+
+  lifecycle {ignore_changes = [node_taints, node_count]}
+}
+
+resource "azurerm_kubernetes_cluster_node_pool" "mlbuildnode" {
+  count                 = var.mlbuild_node_count == "" ? 0 : 1
+  name                  = "mlbuildnode"
+  priority              = var.use_spot_mlbuild ? "Spot" : "Regular"
+  eviction_policy       = var.use_spot_mlbuild ? "Deallocate" : null
+  spot_max_price        = var.use_spot_mlbuild ? var.spot_max_price_mlbuild : null
+  kubernetes_cluster_id = azurerm_kubernetes_cluster.aks.id
+  vm_size               = var.mlbuild_node_size
+  vnet_subnet_id        = var.vnet_subnet_id
+  node_count            = var.use_spot_mlbuild ? 0 : var.mlbuild_node_count
+  min_count             = var.min_mlbuild_node_count
+  max_count             = var.max_mlbuild_node_count
+  orchestrator_version  = var.cluster_version
+  enable_auto_scaling   = var.max_mlbuild_node_count == null ? false : true
+  node_taints = ["sku=mlbuild:NoSchedule"]
+  
+  lifecycle {ignore_changes = [node_taints, node_count]}
 }

@@ -129,6 +129,40 @@ variable "max_infra_node_count" {
 }
 
 // ----------------------------------------------------------------------------
+// mlbuild nodepool variables
+// ----------------------------------------------------------------------------
+variable "use_spot_mlbuild" {
+  type        = bool
+  default     = true
+  description = "Should we use spot instances for the mlbuild nodes"
+}
+variable "spot_max_price_mlbuild" {
+  type        = number
+  default     = -1
+  description = "The maximum price you're willing to pay in USD per virtual machine, -1 to go to the maximum price"
+}
+variable "mlbuild_node_size" {
+  type        = string
+  default     = ""
+  description = "The size of the mlbuild node to use for the cluster"
+}
+variable "mlbuild_node_count" {
+  description = "The number of mlbuild nodes to use for the cluster"
+  type        = number
+  default     = null
+}
+variable "min_mlbuild_node_count" {
+  description = "The minimum number of mlbuild nodes to use for the cluster if autoscaling is enabled"
+  type        = number
+  default     = null
+}
+variable "max_mlbuild_node_count" {
+  description = "The maximum number of mlbuild nodes to use for the cluster if autoscaling is enabled"
+  type        = number
+  default     = null
+}
+
+// ----------------------------------------------------------------------------
 // Cluster variables
 // ----------------------------------------------------------------------------
 variable "cluster_name" {
