@@ -113,7 +113,7 @@ resource "azurerm_kubernetes_cluster_node_pool" "infranode" {
 }
 
 resource "azurerm_kubernetes_cluster_node_pool" "mlbuildnode" {
-  count                 = var.mlbuild_node_count == "" ? 0 : 1
+  count                 = var.mlbuild_node_size == "" ? 0 : 1
   name                  = "mlbuildnode"
   priority              = var.use_spot_mlbuild ? "Spot" : "Regular"
   eviction_policy       = var.use_spot_mlbuild ? "Deallocate" : null
