@@ -73,7 +73,7 @@ resource "azurerm_kubernetes_cluster_node_pool" "mlnode" {
   max_count             = var.max_ml_node_count
   orchestrator_version  = var.cluster_version
   enable_auto_scaling   = var.max_ml_node_count == null ? false : true
-  node_taints = ["sku=gpu:NoSchedule"]
+  node_taints = ["sku=gpu:NoSchedule", "key=compute_gpu:NoSchedule"]
 }
 
 resource "azurerm_kubernetes_cluster_node_pool" "buildnode" {
@@ -126,7 +126,7 @@ resource "azurerm_kubernetes_cluster_node_pool" "mlbuildnode" {
   max_count             = var.max_mlbuild_node_count
   orchestrator_version  = var.cluster_version
   enable_auto_scaling   = var.max_mlbuild_node_count == null ? false : true
-  node_taints = ["sku=mlbuild:NoSchedule"]
+  node_taints = ["sku=mlbuild:NoSchedule", "key=compute_gpu:NoSchedule"]
   
   lifecycle {ignore_changes = [node_taints, node_count]}
 }
