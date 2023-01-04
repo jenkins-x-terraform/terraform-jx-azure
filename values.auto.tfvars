@@ -1,5 +1,6 @@
 jx_git_url = "https://github.com/spring-financial-group/JX3_Azure_Vault_Dev_Cluster"
 cluster_name = "jx3-mqube-build"
+sku_tier = "Paid"
 location="uksouth"
 network_resource_group_name="mqubejx3build-network_rsg"
 cluster_resource_group_name="mqubejx3build-cluster_rsg"

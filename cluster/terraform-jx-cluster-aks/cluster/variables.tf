@@ -169,6 +169,10 @@ variable "max_mlbuild_node_count" {
 variable "cluster_name" {
   type = string
 }
+variable "sku_tier" {
+  description = "The SKU tier of the cluster to use (uptime SLA)."
+  type = string
+}
 variable "cluster_version" {
   description = "Kubernetes version to use for the AKS cluster."
   type        = string

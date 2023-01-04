@@ -1,5 +1,6 @@
 resource "azurerm_kubernetes_cluster" "aks" {
   name                = var.cluster_name
+  sku_tier            = var.sku_tier
   location            = var.location
   resource_group_name = var.resource_group_name
   node_resource_group = var.node_resource_group_name
