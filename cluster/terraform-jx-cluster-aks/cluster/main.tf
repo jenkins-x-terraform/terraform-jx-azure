@@ -77,7 +77,7 @@ resource "azurerm_kubernetes_cluster_node_pool" "mlnode" {
   node_taints = ["sku=gpu:NoSchedule"]
   node_labels = {key = "gpu_ready"}
 
-  lifecycle {ignore_changes = [node_taints, node_count]}
+  lifecycle {ignore_changes = [node_taints, node_count, node_labels]}
 }
 
 resource "azurerm_kubernetes_cluster_node_pool" "buildnode" {
@@ -135,5 +135,5 @@ resource "azurerm_kubernetes_cluster_node_pool" "mlbuildnode" {
   node_taints = ["sku=mlbuild:NoSchedule"]
   node_labels = {key = "gpu_ready"}
   
-  lifecycle {ignore_changes = [node_taints, node_count]}
+  lifecycle {ignore_changes = [node_taints, node_count, node_labels]}
 }
