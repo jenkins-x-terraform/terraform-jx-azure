@@ -39,6 +39,7 @@ module "cluster" {
   depends_on                       = [module.vnet]
   source                           = "./cluster"
   cluster_name                     = var.cluster_name
+  sku_tier                         = var.sku_tier
   vnet_subnet_id                   = module.vnet.subnet_id
   dns_prefix                       = local.dns_prefix
   cluster_version                  = var.cluster_version

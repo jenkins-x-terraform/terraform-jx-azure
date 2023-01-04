@@ -169,6 +169,10 @@ variable "cluster_name" {
   type    = string
   default = ""
 }
+variable "sku_tier" {
+  description = "The SKU tier of the cluster to use (uptime SLA)."
+  type = string
+}
 variable "dns_prefix" {
   type    = string
   default = ""
