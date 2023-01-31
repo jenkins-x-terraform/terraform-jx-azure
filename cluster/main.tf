@@ -103,6 +103,15 @@ module "registry" {
   use_existing_acr_resource_group_name = var.use_existing_acr_resource_group_name
 }
 
+module "oss_registry" {
+  source = "./terraform-jx-registry-oss-acr"
+  count = var.enable_oss_registry && var.use_existing_acr_name == null && var.external_registry_url ? 1 : 0
+  depends_on = [module.registry]
+  cluster_name = local.cluster_name
+  principal_id = module.cluster.kubelet_identity_id
+  location     = var.location
+}
+
 module "jx-boot" {
   source              = "./terraform-jx-boot"
   depends_on          = [module.cluster]

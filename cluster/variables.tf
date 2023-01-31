@@ -365,3 +365,9 @@ variable "use_existing_acr_resource_group_name" {
   type        = string
   default     = null
 }
+
+variable "enable_oss_registry" {
+  description = "Flag to indicate whether to enable OSS registry"
+    type        = bool
+    default     = false
+}
