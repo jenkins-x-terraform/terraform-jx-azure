@@ -204,7 +204,7 @@ variable "max_mlbuild_node_count" {
 variable "sku_tier" {
   description = "The SKU tier of the cluster to use (uptime SLA)."
   default     = "Free"
-  type = string
+  type        = string
 }
 variable "dns_prefix" {
   type        = string
@@ -343,7 +343,11 @@ variable "use_existing_acr_resource_group_name" {
   default     = null
 }
 
-
+variable "enable_oss_registry" {
+  description = "Flag to indicate whether to enable OSS registry"
+  type        = bool
+  default     = false
+}
 
 // ----------------------------------------------------------------------------
 // Storage variables
@@ -361,5 +365,5 @@ variable "storage_resource_group_name" {
 
 variable "external_registry_url" {
   default = ""
-  type = string
+  type    = string
 }
