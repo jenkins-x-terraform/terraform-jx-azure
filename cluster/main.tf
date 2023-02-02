@@ -104,13 +104,12 @@ module "registry" {
 }
 
 module "oss_registry" {
-  source = "./terraform-jx-registry-acr"
+  source = "./terraform-jx-registry-acr-oss"
   count = var.enable_oss_registry && var.use_existing_acr_name == null && var.external_registry_url == "" ? 1 : 0
   depends_on = [module.registry]
   cluster_name = local.cluster_name
   principal_id = module.cluster.kubelet_identity_id
   location     = var.location
-  external_registry_url = var.external_registry_url
 }
 
 module "jx-boot" {
