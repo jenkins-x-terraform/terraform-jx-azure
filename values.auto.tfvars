@@ -50,6 +50,7 @@ max_mlbuild_node_count = 5
 
 # External registry not used at the moment
 external_registry_url = ""
+enable_oss_registry = true
 
 
 server_side_apply_enabled = true
