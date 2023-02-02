@@ -7,6 +7,3 @@ output "admin_username" {
 output "admin_password" {
   value = var.external_registry_url != "" ? "" : var.use_existing_acr_name == null ? azurerm_container_registry.acr[0].admin_password : data.azurerm_container_registry.acr_existing[0].admin_password
 }
-output "resource_group_name" {
-  value = local.resource_group_name
-}
