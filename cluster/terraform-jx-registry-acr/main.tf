@@ -29,7 +29,7 @@ resource "azurerm_container_registry" "acr" {
 
 resource "azurerm_container_registry" "oss_acr" {
   name                = "ossregistry"
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_container_registry.acr.name
   location            = var.location
   sku                 = "Standard"
   admin_enabled       = true

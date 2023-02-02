@@ -110,7 +110,7 @@ module "oss_registry" {
   cluster_name = local.cluster_name
   principal_id = module.cluster.kubelet_identity_id
   location     = var.location
-  external_registry_url = ""
+  external_registry_url = var.external_registry_url
 }
 
 module "jx-boot" {
