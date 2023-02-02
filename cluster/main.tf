@@ -105,7 +105,7 @@ module "registry" {
 
 module "oss_registry" {
   source = "./terraform-jx-registry-acr"
-  count = var.enable_oss_registry && var.use_existing_acr_name == null && var.external_registry_url ? 1 : 0
+  count = var.enable_oss_registry && var.use_existing_acr_name == null && var.external_registry_url == "" ? 1 : 0
   depends_on = [module.registry]
   cluster_name = local.cluster_name
   principal_id = module.cluster.kubelet_identity_id
