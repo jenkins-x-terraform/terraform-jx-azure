@@ -3,6 +3,11 @@ variable "resource_group_name" {
   type        = string
   default     = ""
 }
+variable "oss_registry_name" {
+  description = "Name of the container registry"
+  type        = string
+  default     = ""
+}
 variable "location" {
   description = "Location in which to create registry"
   type        = string

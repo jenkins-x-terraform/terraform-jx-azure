@@ -94,22 +94,23 @@ module "cluster" {
 }
 
 module "registry" {
-  source       = "./terraform-jx-registry-acr"
-  cluster_name = local.cluster_name
-  principal_id = module.cluster.kubelet_identity_id
-  location     = var.location
-  external_registry_url = var.external_registry_url
-  use_existing_acr_name = var.use_existing_acr_name
+  source                               = "./terraform-jx-registry-acr"
+  cluster_name                         = local.cluster_name
+  principal_id                         = module.cluster.kubelet_identity_id
+  location                             = var.location
+  external_registry_url                = var.external_registry_url
+  use_existing_acr_name                = var.use_existing_acr_name
   use_existing_acr_resource_group_name = var.use_existing_acr_resource_group_name
 }
 
 module "oss_registry" {
-  source = "./terraform-jx-registry-acr-oss"
-  count = var.enable_oss_registry && var.use_existing_acr_name == null && var.external_registry_url == "" ? 1 : 0
-  depends_on = [module.registry]
+  source              = "./terraform-jx-registry-acr-oss"
+  count               = var.oss_registry_name != "" && var.use_existing_acr_name == null && var.external_registry_url == "" ? 1 : 0
+  oss_registry_name   = var.oss_registry_name
+  depends_on          = [module.registry]
   resource_group_name = module.registry.resource_group_name
-  principal_id = module.cluster.kubelet_identity_id
-  location     = var.location
+  principal_id        = module.cluster.kubelet_identity_id
+  location            = var.location
 }
 
 module "jx-boot" {

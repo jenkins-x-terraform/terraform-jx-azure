@@ -12,17 +12,12 @@ terraform {
 }
 
 resource "azurerm_container_registry" "oss_acr" {
-  name                = "ossregistry"
+  name                = var.oss_registry_name
   resource_group_name = var.resource_group_name
   location            = var.location
   sku                 = "Standard"
+  anonymous_pull_enabled = true
   admin_enabled       = true
-}
-
-resource "azurerm_role_assignment" "oss_pull" {
-  scope                = azurerm_container_registry.oss_acr.id
-  role_definition_name = "AcrPull"
-  principal_id = "00000000-0000-0000-0000-000000000000"
 }
 
 resource "azurerm_role_assignment" "oss_push" {

@@ -366,8 +366,8 @@ variable "use_existing_acr_resource_group_name" {
   default     = null
 }
 
-variable "enable_oss_registry" {
-  description = "Flag to indicate whether to enable OSS registry"
-    type        = bool
-    default     = false
+variable "oss_registry_name" {
+  description = "Name of the container registry"
+  type        = string
+  default     = ""
 }
