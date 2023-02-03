@@ -17,3 +17,8 @@ variable "principal_id" {
   description = "Principal id of the identity to give authorisation to push/pull to container registry"
   type        = string
 }
+variable "sku" {
+  description = "SKU of the container registry"
+  type       = string
+  default = "Standard"
+}
