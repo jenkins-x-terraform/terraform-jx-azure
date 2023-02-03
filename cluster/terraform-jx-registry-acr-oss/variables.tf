@@ -4,7 +4,7 @@ variable "resource_group_name" {
   default     = ""
 }
 variable "oss_registry_name" {
-  description = "Name of the container registry"
+  description = "Name of the Open Source container registry"
   type        = string
   default     = ""
 }

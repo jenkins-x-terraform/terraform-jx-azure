@@ -344,7 +344,7 @@ variable "use_existing_acr_resource_group_name" {
 }
 
 variable "oss_registry_name" {
-  description = "Name of the container registry"
+  description = "Name of the Open Source container registry"
   type        = string
   default     = ""
 }
