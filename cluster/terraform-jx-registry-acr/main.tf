@@ -21,7 +21,7 @@ resource "azurerm_resource_group" "acr" {
 resource "azurerm_container_registry" "acr" {
   count               = var.external_registry_url == "" && var.use_existing_acr_name == null ? 1 : 0
   name                = local.container_registry_name
-  resource_group_name = azurerm_resource_group.acr[0].name == null ? 1 : 0
+  resource_group_name = azurerm_resource_group.acr[0].name == ""
   location            = var.location
   sku                 = "Standard"
   admin_enabled       = true
