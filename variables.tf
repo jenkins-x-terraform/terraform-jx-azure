@@ -34,7 +34,7 @@ variable "server_side_apply_enabled" {
 variable "install_kuberhealthy" {
   description = "Flag to specify if kuberhealthy operator should be installed"
   type        = bool
-  default     = true
+  default     = false
 }
 
 // ----------------------------------------------------------------------------
