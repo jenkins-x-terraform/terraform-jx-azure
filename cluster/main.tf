@@ -7,6 +7,9 @@ terraform {
     kubernetes = {
       version = ">=1.13.3"
     }
+    azurerm = {
+      version = ">=2.57.0"
+    }
   }
 }
 
