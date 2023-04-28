@@ -22,13 +22,13 @@ max_node_count = 30
 node_size      = "Standard_D4s_v3"
 
 # Ml nodes
-use_spot_ml       = false
+use_spot_ml       = true
 ml_node_size      = "Standard_NV24s_v3"
 min_ml_node_count = 0
 max_ml_node_count = 5
 
 # Build Spot Nodes
-use_spot             = false
+use_spot             = true
 build_node_size      = "Standard_D8s_v4"
 min_build_node_count = 0
 max_build_node_count = 6
@@ -40,7 +40,7 @@ min_infra_node_count = 0
 max_infra_node_count = 6
 
 # MLbuild Node
-use_spot_mlbuild       = false
+use_spot_mlbuild       = true
 mlbuild_node_size      = "Standard_NC4as_T4_v3"
 min_mlbuild_node_count = 0
 max_mlbuild_node_count = 5
