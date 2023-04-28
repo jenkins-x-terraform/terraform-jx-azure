@@ -22,7 +22,7 @@ max_node_count = 30
 node_size      = "Standard_D4s_v3"
 
 # Ml nodes
-use_spot_ml       = true
+use_spot_ml       = false
 ml_node_size      = "Standard_NV24s_v3"
 min_ml_node_count = 0
 max_ml_node_count = 5
