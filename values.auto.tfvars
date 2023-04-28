@@ -14,7 +14,7 @@ dns_resource_group_name          = "jx3build-dns-rsg"
 key_vault_enabled                = false
 key_vault_resource_group_name    = "jx3key-vault-rsg"
 key_vault_name                   = "k8secrets-vault"
-cluster_version                  = "1.23.12"
+cluster_version                  = "1.24.10"
 
 # Machines
 min_node_count = 5
