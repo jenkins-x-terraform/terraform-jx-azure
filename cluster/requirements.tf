@@ -14,6 +14,7 @@ locals {
     log_container_name   = module.storage.log_container_name
     storage_account_name = module.storage.storage_account_name
     vault_installed      = module.jx-boot.vault_instance_release_id != "" ? true : false
+    kubelet_client_id    = module.cluster.kubelet_client_id
   })
 
   jx_requirements_split_content   = split("\n", local.jx_requirements_interpolated_content)
