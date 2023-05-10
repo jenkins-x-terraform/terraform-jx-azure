@@ -17,6 +17,8 @@ spec:
         tenantId: ${dns_tenant_id}
         subscriptionId: ${dns_subscription_id}
   %{ endif }
+      clusterNodes:
+        clientID: ${kubelet_client_id}
   environments:
     - key: dev
   ingress:

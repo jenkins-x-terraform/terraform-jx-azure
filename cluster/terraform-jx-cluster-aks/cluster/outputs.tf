@@ -25,6 +25,9 @@ output "node_resource_group" {
 output "kubelet_identity_id" {
   value = azurerm_kubernetes_cluster.aks.kubelet_identity.0.object_id
 }
+output "kubelet_client_id" {
+  value = azurerm_kubernetes_cluster.aks.kubelet_identity.0.client_id
+}
 output "kubernetes_cluster" {
   value = azurerm_kubernetes_cluster.aks
 }
