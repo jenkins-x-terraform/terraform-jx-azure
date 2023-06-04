@@ -60,6 +60,7 @@ module "cluster" {
   subnet_cidr                          = var.subnet_cidr
   subnet_name                          = var.subnet_name
   vnet_cidr                            = var.vnet_cidr
+  azure_policy_bool                    = var.azure_policy_bool
 }
 
 output "connect" {

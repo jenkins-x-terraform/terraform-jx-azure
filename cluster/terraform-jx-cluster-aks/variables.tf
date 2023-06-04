@@ -225,3 +225,7 @@ variable "logging_retention_days" {
   type    = number
   default = 30
 }
+
+variable "azure_policy_bool" {
+  type = bool
+}

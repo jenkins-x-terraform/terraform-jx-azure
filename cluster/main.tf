@@ -94,6 +94,7 @@ module "cluster" {
   subnet_name                      = var.subnet_name
   subnet_cidr                      = var.subnet_cidr
   vnet_cidr                        = var.vnet_cidr
+  azure_policy_bool                = var.azure_policy_bool
 }
 
 module "registry" {

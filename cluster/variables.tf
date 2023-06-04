@@ -265,6 +265,10 @@ variable "logging_retention_days" {
   description = "Number of days to retain logs in Log Analytics if enabled"
 }
 
+variable "azure_policy_bool" {
+  type = bool
+}
+
 // ----------------------------------------------------------------------------
 // DNS variables
 // ---------------------------------------------------------------------------

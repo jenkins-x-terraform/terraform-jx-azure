@@ -205,3 +205,8 @@ variable "enable_log_analytics" {
 variable "logging_retention_days" {
   type = number
 }
+
+variable "azure_policy_bool" {
+  type = bool
+}
+
