@@ -78,6 +78,7 @@ module "cluster" {
   mlbuild_node_count               = var.mlbuild_node_count
   min_mlbuild_node_count           = var.min_mlbuild_node_count
   max_mlbuild_node_count           = var.max_mlbuild_node_count
+  azure_policy_bool                = var.azure_policy_bool
 }
 
 // ----------------------------------------------------------------------------
