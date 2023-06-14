@@ -17,11 +17,9 @@ resource "helm_release" "vault-instance" {
   version    = "1.0.24"
   
   set {
-    name = "pvc"
-    value = yamlencode({
-      storageClassName = ""
-      size = "2Gi"
-    })
+    name = "pvc.size"
+    value = "2Gi"
   }
+  
   depends_on = [helm_release.vault-operator]
 }
