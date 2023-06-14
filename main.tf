@@ -1,3 +1,14 @@
+terraform {
+  required_version = ">= 1.3.2"
+  backend "remote" {
+    organization = "mqube"
+
+    workspaces {
+      name = "terraform-jx-azure"
+    }
+  }
+}
+
 module "cluster" {
   source                               = "./cluster"
   apex_domain_integration_enabled      = var.apex_domain_integration_enabled
