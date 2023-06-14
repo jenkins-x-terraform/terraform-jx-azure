@@ -57,7 +57,6 @@ resource "azurerm_kubernetes_cluster" "aks" {
     kube_dashboard {
       enabled = false
     }
-    
   }
 }
 
