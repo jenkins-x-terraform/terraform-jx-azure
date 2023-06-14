@@ -19,6 +19,7 @@ resource "helm_release" "vault-instance" {
   set {
     name = "pvc"
     value = yamlencode({
+      storageClassName = ""
       size = "2Gi"
     })
   }
