@@ -20,7 +20,6 @@ resource "azurerm_kubernetes_cluster" "aks" {
       max_surge = "25%"
     }
   }
-  lifecycle { ignore_changes = [default_node_pool[0].node_count] }
 
   network_profile {
     network_plugin = var.cluster_network_model
@@ -58,6 +57,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
     kube_dashboard {
       enabled = false
     }
+    
   }
 }
 
