@@ -14,12 +14,11 @@ resource "helm_release" "vault-instance" {
   chart      = "vault-instance"
   namespace  = "jx-vault"
   repository = "https://jenkins-x-charts.github.io/repo"
-  version    = "1.0.24"
+  version    = "1.0.27"
   
   set {
     name = "pvc.size"
     value = "2Gi"
   }
-  
   depends_on = [helm_release.vault-operator]
 }
