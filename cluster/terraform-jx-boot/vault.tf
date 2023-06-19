@@ -6,6 +6,15 @@ resource "helm_release" "vault-operator" {
   repository       = "https://kubernetes-charts.banzaicloud.com"
   version          = "1.14.3"
   create_namespace = true
+
+  set {
+    name = "resources.limits.memory"
+    value = "512Mi"
+  }
+  set {
+      name = "resources.requests.memory"
+      value = "256Mi"
+    }
 }
 
 resource "helm_release" "vault-instance" {
