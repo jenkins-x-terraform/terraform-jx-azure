@@ -19,7 +19,7 @@ azure_policy_bool                = false
 
 # Machines
 min_node_count = 5
-max_node_count = 30
+max_node_count = 50
 node_size      = "Standard_D4s_v3"
 
 # Ml nodes
