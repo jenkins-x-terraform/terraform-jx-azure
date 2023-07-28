@@ -14,7 +14,7 @@ dns_resource_group_name          = "jx3build-dns-rsg"
 key_vault_enabled                = false
 key_vault_resource_group_name    = "jx3key-vault-rsg"
 key_vault_name                   = "k8secrets-vault"
-cluster_version                  = "1.24.10"
+cluster_version                  = "1.26.6"
 azure_policy_bool                = false
 
 # Machines
@@ -23,13 +23,13 @@ max_node_count = 50
 node_size      = "Standard_D4s_v3"
 
 # Ml nodes
-use_spot_ml       = true
+use_spot_ml       = false
 ml_node_size      = "Standard_NV24s_v3"
 min_ml_node_count = 0
 max_ml_node_count = 5
 
 # Build Spot Nodes
-use_spot             = true
+use_spot             = false
 build_node_size      = "Standard_D8s_v4"
 min_build_node_count = 0
 max_build_node_count = 6
@@ -41,7 +41,7 @@ min_infra_node_count = 0
 max_infra_node_count = 6
 
 # MLbuild Node
-use_spot_mlbuild       = true
+use_spot_mlbuild       = false
 mlbuild_node_size      = "Standard_NC4as_T4_v3"
 min_mlbuild_node_count = 0
 max_mlbuild_node_count = 5
