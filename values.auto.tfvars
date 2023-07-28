@@ -14,7 +14,7 @@ dns_resource_group_name          = "jx3build-dns-rsg"
 key_vault_enabled                = false
 key_vault_resource_group_name    = "jx3key-vault-rsg"
 key_vault_name                   = "k8secrets-vault"
-cluster_version                  = "1.24.10"
+cluster_version                  = "1.25.6"
 azure_policy_bool                = false
 
 # Machines
