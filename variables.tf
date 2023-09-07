@@ -13,7 +13,6 @@ variable "location" {
 // ----------------------------------------------------------------------------
 // JX Boot variables
 // ----------------------------------------------------------------------------
-
 variable "jx_git_url" {
   description = "URL for the Jenkins X cluster git repository"
   type        = string

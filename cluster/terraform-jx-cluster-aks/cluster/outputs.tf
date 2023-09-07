@@ -31,3 +31,6 @@ output "kubelet_client_id" {
 output "kubernetes_cluster" {
   value = azurerm_kubernetes_cluster.aks
 }
+output "microsoft_defender_log_id" {
+  value = azurerm_log_analytics_workspace.microsoft_defender.id
+}

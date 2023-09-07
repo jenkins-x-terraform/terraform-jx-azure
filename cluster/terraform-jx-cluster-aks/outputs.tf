@@ -25,3 +25,6 @@ output "kube_config_admin_raw" {
 output "kube_config_admin" {
   value = module.cluster.kube_config_admin
 }
+output "microsoft_defender_log_id" {
+  value = module.cluster.microsoft_defender_log_id
+}

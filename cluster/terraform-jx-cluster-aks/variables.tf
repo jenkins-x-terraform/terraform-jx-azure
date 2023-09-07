@@ -229,3 +229,12 @@ variable "logging_retention_days" {
 variable "azure_policy_bool" {
   type = bool
 }
+
+variable "microsoft_defender_log_id" {
+  type = string
+}
+
+variable "default_rg" {
+  type = string
+  default = "DefaultResourceGroup-SUK"
+}
