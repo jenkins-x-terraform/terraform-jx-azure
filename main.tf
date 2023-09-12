@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">= 1.3.2"
+  required_version = ">=1.4.6"
   backend "remote" {
     organization = "mqube"
 

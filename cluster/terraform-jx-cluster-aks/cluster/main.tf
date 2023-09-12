@@ -6,9 +6,29 @@ resource "azurerm_kubernetes_cluster" "aks" {
   node_resource_group = var.node_resource_group_name
   dns_prefix          = var.dns_prefix
   kubernetes_version  = var.cluster_version
+  azure_policy_enabled = var.azure_policy_bool
+  http_application_routing_enabled = false
+  
+  azure_active_directory_role_based_access_control {
+    managed = true
+  }
+  
+  microsoft_defender {
+    log_analytics_workspace_id = var.microsoft_defender_log_id
+  }
 
+  dynamic "oms_agent" {
+    for_each = var.enable_log_analytics ? [""] : []
+    content {
+     # enabled                    = var.enable_log_analytics
+      log_analytics_workspace_id = var.enable_log_analytics ? azurerm_log_analytics_workspace.cluster[0].id : ""
+    }
+  }
+  
   default_node_pool {
     name                 = "default"
+    custom_ca_trust_enabled      = false
+    scale_down_mode              = "Deallocate"
     vm_size              = var.node_size
     vnet_subnet_id       = var.vnet_subnet_id
     node_count           = var.node_count
@@ -20,43 +40,13 @@ resource "azurerm_kubernetes_cluster" "aks" {
       max_surge = "25%"
     }
   }
-
+  
   network_profile {
     network_plugin = var.cluster_network_model
   }
 
   identity {
     type = "SystemAssigned"
-  }
-
-  role_based_access_control {
-    enabled = true
-
-    azure_active_directory {
-      managed = true
-    }
-  }
-
-  addon_profile {
-    dynamic "oms_agent" {
-      for_each = var.enable_log_analytics ? [""] : []
-      content {
-        enabled                    = var.enable_log_analytics
-        log_analytics_workspace_id = var.enable_log_analytics ? azurerm_log_analytics_workspace.cluster[0].id : ""
-      }
-    }
-    aci_connector_linux {
-      enabled = false
-    }
-    azure_policy {
-      enabled = var.azure_policy_bool
-    }
-    http_application_routing {
-      enabled = false
-    }
-    kube_dashboard {
-      enabled = false
-    }
   }
 }
 

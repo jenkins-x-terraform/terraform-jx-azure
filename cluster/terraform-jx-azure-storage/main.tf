@@ -6,7 +6,7 @@ terraform {
   required_version = ">= 0.13.2"
   required_providers {
     azurerm = {
-      version = ">=2.56.0"
+      version = ">=3.0.0"
     }
   }
 }
@@ -24,6 +24,7 @@ resource "azurerm_storage_account" "storage" {
   account_tier             = "Standard"
   account_kind             = "StorageV2"
   is_hns_enabled           = true
+  allow_nested_items_to_be_public = false
 }
 
 resource "azurerm_storage_container" "logs" {

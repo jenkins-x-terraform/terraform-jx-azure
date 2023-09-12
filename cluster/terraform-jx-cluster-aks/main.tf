@@ -3,10 +3,10 @@
 //
 // ----------------------------------------------------------------------------
 terraform {
-  required_version = ">= 1.3.2"
+  required_version = ">= 1.4.6"
   required_providers {
     azurerm = {
-      version = ">=2.57.0"
+      version = ">=3.0.0"
     }
   }
 }
@@ -23,6 +23,11 @@ data "azurerm_subscription" "current" {
 
 resource "azurerm_resource_group" "network" {
   name     = local.network_resource_group_name
+  location = var.location
+}
+
+resource "azurerm_resource_group" "default_suk" {
+  name     = var.default_rg
   location = var.location
 }
 
@@ -79,6 +84,8 @@ module "cluster" {
   min_mlbuild_node_count           = var.min_mlbuild_node_count
   max_mlbuild_node_count           = var.max_mlbuild_node_count
   azure_policy_bool                = var.azure_policy_bool
+  microsoft_defender_log_id        = module.cluster.microsoft_defender_log_id
+  defender_resource_group          = azurerm_resource_group.default_suk.name
 }
 
 // ----------------------------------------------------------------------------
