@@ -1,0 +1,10 @@
+jx_git_url                      = "https://github.com/greencapitaltrade/mcu"
+jx_bot_username                 = "gct-bot"
+cluster_name                    = "gct-paysay"
+location                        = "centralindia"
+apex_domain                     = "paysay.in"
+min_node_count                  = 2
+max_node_count                  = 5
+dns_prefix                      = "paysay"
+apex_resource_group_name        = "GCTFinserv"
+apex_domain_integration_enabled = true

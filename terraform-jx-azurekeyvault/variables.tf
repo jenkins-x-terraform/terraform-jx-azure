@@ -8,7 +8,7 @@ variable "enabled" {
 }
 variable "location" {
   type    = string
-  default = "australiaeast"
+  default = "centralindia"
 }
 variable "resource_group_name" {
   type        = string

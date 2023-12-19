@@ -15,7 +15,7 @@ variable "resource_group_name" {
 variable "location" {
   description = "Location in which to create registry"
   type        = string
-  default     = "australiaeast"
+  default     = "centralindia"
 }
 variable "principal_id" {
   description = "Principal id of the identity to give authorisation to push/pull to container registry"

@@ -17,7 +17,7 @@ terraform {
 data "azurerm_subscription" "current" {
 }
 
-data "azurerm_client_config" "current" {
+data "azuread_client_config" "current" {
 }
 
 // ----------------------------------------------------------------------------
@@ -59,7 +59,7 @@ resource "azurerm_key_vault_access_policy" "jx" {
 resource "azurerm_key_vault_access_policy" "terraform" {
   count        = var.enabled ? 1 : 0
   key_vault_id = azurerm_key_vault.jx.0.id
-  object_id    = data.azurerm_client_config.current.object_id
+  object_id    = data.azuread_client_config.current.object_id
   tenant_id    = local.tenant_id
 
   secret_permissions = [

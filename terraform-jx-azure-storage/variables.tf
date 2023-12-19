@@ -1,6 +1,6 @@
 variable "location" {
   type        = string
-  default     = "australiaeast"
+  default     = "centralindia"
   description = "The Azure region in to which to provision the cluster"
 }
 variable "resource_group_name" {

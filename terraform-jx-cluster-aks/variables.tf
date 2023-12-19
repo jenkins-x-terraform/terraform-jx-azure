@@ -100,7 +100,7 @@ variable "cluster_version" {
 }
 variable "location" {
   type    = string
-  default = "australiaeast"
+  default = "centralindia"
 }
 variable "network_resource_group_name" {
   type    = string

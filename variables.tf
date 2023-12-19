@@ -5,7 +5,7 @@ variable "cluster_name" {
 }
 variable "location" {
   type        = string
-  default     = "australiaeast"
+  default     = "centralindia"
   description = "The Azure region in to which to provision the cluster"
 }
 
@@ -195,24 +195,9 @@ variable "apex_domain_integration_enabled" {
   default     = true
   description = "Flag that when set attempts to create delegation records in apex domain to point to domain created by this module"
 }
-variable "dns_enabled" {
-  type        = bool
-  default     = false
-  description = "** Deprecated** Set apex_domain instead"
-}
 variable "apex_domain" {
   type        = string
   description = "The parent / apex domain to be used for the cluster"
-  default     = ""
-}
-variable "apex_domain_name" {
-  type        = string
-  description = "**Deprecated** Please use apex_domain instead"
-  default     = ""
-}
-variable "domain_name" {
-  type        = string
-  description = "**Deprecated** Please use subdomain instead"
   default     = ""
 }
 variable "subdomain" {

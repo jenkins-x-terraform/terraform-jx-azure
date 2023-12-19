@@ -121,3 +121,15 @@ variable "enable_log_analytics" {
 variable "logging_retention_days" {
   type = number
 }
+variable "sku_tier" {
+  type    = string
+  default = "Paid"
+}
+variable "automatic_channel_upgrade" {
+  type    = string
+  default = "patch"
+}
+variable "private_cluster_enabled" {
+  type    = bool
+  default = false
+}

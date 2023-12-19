@@ -30,6 +30,6 @@ variable "principal_id" {
 }
 variable "location" {
   type        = string
-  default     = "australiaeast"
+  default     = "centralindia"
   description = "The Azure location in which to create the DNS zone"
 }
