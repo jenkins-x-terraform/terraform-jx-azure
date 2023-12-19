@@ -8,3 +8,4 @@ max_node_count                  = 5
 dns_prefix                      = "paysay"
 apex_resource_group_name        = "GCTFinserv"
 apex_domain_integration_enabled = true
+private_cluster_enabled         = true

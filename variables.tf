@@ -8,6 +8,10 @@ variable "location" {
   default     = "centralindia"
   description = "The Azure region in to which to provision the cluster"
 }
+variable "private_cluster_enabled" {
+  type    = bool
+  default = false
+}
 
 // ----------------------------------------------------------------------------
 // JX Boot variables

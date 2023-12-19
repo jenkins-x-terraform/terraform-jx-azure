@@ -63,6 +63,7 @@ module "cluster" {
   build_node_count                 = var.build_node_count
   min_build_node_count             = var.min_build_node_count
   max_build_node_count             = var.max_build_node_count
+  private_cluster_enabled          = var.private_cluster_enabled
 }
 
 // ----------------------------------------------------------------------------
@@ -70,11 +71,13 @@ module "cluster" {
 // ----------------------------------------------------------------------------
 
 module "vnet" {
-  source         = "./vnet"
-  resource_group = azurerm_resource_group.network.name
-  vnet_cidr      = var.vnet_cidr
-  subnet_cidr    = var.subnet_cidr
-  network_name   = local.network_name
-  subnet_name    = local.subnet_name
-  location       = var.location
+  source                           = "./vnet"
+  resource_group                   = azurerm_resource_group.network.name
+  vnet_cidr                        = var.vnet_cidr
+  subnet_cidr                      = var.subnet_cidr
+  gateway_cidr                     = var.gateway_cidr
+  network_name                     = local.network_name
+  subnet_name                      = local.subnet_name
+  location                         = var.location
+  private_cluster_enabled          = var.private_cluster_enabled
 }

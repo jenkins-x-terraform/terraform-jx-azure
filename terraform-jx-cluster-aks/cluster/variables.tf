@@ -131,5 +131,4 @@ variable "automatic_channel_upgrade" {
 }
 variable "private_cluster_enabled" {
   type    = bool
-  default = false
 }
