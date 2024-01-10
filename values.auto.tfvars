@@ -26,7 +26,7 @@ node_size      = "Standard_D4s_v3"
 use_spot_ml       = true
 ml_node_size      = "Standard_NV24s_v3"
 min_ml_node_count = 0
-max_ml_node_count = 5
+max_ml_node_count = 6
 
 # Build Spot Nodes
 use_spot             = true
@@ -44,7 +44,7 @@ max_infra_node_count = 6
 use_spot_mlbuild       = true
 mlbuild_node_size      = "Standard_NC4as_T4_v3"
 min_mlbuild_node_count = 0
-max_mlbuild_node_count = 6
+max_mlbuild_node_count = 5
 
 
 # Bot stuff in now in terraform
