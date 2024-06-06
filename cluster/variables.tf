@@ -375,3 +375,8 @@ variable "oss_registry_name" {
   type        = string
   default     = ""
 }
+
+variable "acr_enabled" {
+  description = "additional toggle to enable/disable acr creation"
+  type        = string
+}

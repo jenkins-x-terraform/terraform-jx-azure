@@ -371,3 +371,7 @@ variable "external_registry_url" {
   type    = string
 }
 
+variable "acr_enabled" {
+  description = "additional toggle to enable/disable acr creation"
+  type        = string
+}

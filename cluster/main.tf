@@ -106,6 +106,7 @@ module "registry" {
   external_registry_url                = var.external_registry_url
   use_existing_acr_name                = var.use_existing_acr_name
   use_existing_acr_resource_group_name = var.use_existing_acr_resource_group_name
+  acr_enabled                          = var.acr_enabled
 }
 
 module "oss_registry" {
