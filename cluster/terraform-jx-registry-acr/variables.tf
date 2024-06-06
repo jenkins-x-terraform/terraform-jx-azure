@@ -37,3 +37,8 @@ variable "use_existing_acr_resource_group_name" {
   type        = string
   default     = null
 }
+
+variable "acr_enabled" {
+  description = "additional toggle to enable/disable acr creation"
+  type        = string
+}
