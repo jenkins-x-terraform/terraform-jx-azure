@@ -29,6 +29,10 @@ variable "principal_id" {
   type        = string
   description = "The id of the service principal that should be granted permission on the key vault"
 }
+variable "kubelet_client_id" {
+    type        = string
+    description = "The client id of the kubelet identity used when authenticating to the key vault"
+}
 variable "secret_map" {
   type        = map(string)
   description = "Map of secret keys and values to store in Azure Key Vault"
