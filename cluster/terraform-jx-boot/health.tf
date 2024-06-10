@@ -1,4 +1,5 @@
 module "jx-health" {
+  count               = var.install_kuberhealthy ? 1 : 0
   source              = "github.com/jenkins-x/terraform-jx-health?ref=main"
   jx_git_url          = var.jx_git_url
   jx_bot_username     = var.jx_bot_username
