@@ -17,6 +17,7 @@ key_vault_name                   = "k8secrets-vault"
 cluster_version                  = "1.27.3"
 azure_policy_bool                = false
 acr_enabled                      = true
+install_kuberhealthy             = true
 
 # Machines
 min_node_count = 5

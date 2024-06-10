@@ -30,3 +30,8 @@ variable "operator_annotations" {
   default     = {}
   description = "Annotations to apply to jx git operator chart"
 }
+variable "install_kuberhealthy" {
+  description = "Flag to specify if kuberhealthy operator should be installed"
+  type        = bool
+  default     = true
+}

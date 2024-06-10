@@ -73,6 +73,7 @@ module "cluster" {
   vnet_cidr                            = var.vnet_cidr
   azure_policy_bool                    = var.azure_policy_bool
   acr_enabled                          = var.acr_enabled
+  install_kuberhealthy                 = var.install_kuberhealthy
 }
 
 output "connect" {
