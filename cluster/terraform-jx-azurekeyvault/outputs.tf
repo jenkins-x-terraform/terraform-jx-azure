@@ -7,3 +7,6 @@ output "tenant_id" {
 output "subscription_id" {
   value = var.enabled ? data.azurerm_subscription.current.subscription_id : ""
 }
+output "client_id" {
+  value = var.enabled ? var.kubelet_client_id : ""
+}
