@@ -21,14 +21,14 @@ data "azurerm_resource_group" "apex_resource_group" {
 }
 
 resource "azurerm_resource_group" "dns" {
-  count    = local.enabled && local.with_subdomain ? 1 : 0
-  name     = local.resource_group_name
+  count    = local.enabled ? 1 : 0
+  name     = var.apex_resource_group_name != "" ? local.resource_group_name : var.apex_resource_group_name
   location = var.location
 }
 
 resource "azurerm_dns_zone" "dns" {
-  count               = local.enabled && local.with_subdomain ? 1 : 0
-  name                = join(".", [var.subdomain, var.apex_domain])
+  count               = local.enabled ? 1 : 0
+  name                = var.subdomain != "" ? join(".", [var.subdomain, var.apex_domain]) : var.apex_domain
   resource_group_name = azurerm_resource_group.dns.0.name
 }
 
