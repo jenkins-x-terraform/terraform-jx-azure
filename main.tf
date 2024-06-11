@@ -115,6 +115,7 @@ module "secrets" {
   source              = "./terraform-jx-azurekeyvault"
   enabled             = var.key_vault_enabled
   principal_id        = module.cluster.kubelet_identity_id
+  kubelet_client_id   = module.cluster.kubelet_client_id
   cluster_name        = local.cluster_name
   resource_group_name = var.key_vault_resource_group_name
   key_vault_name      = var.key_vault_name
