@@ -17,6 +17,7 @@ locals {
   job_secret_env_vars_vault = var.key_vault_enabled ? {
     AZURE_TENANT_ID       = module.secrets.tenant_id
     AZURE_SUBSCRIPTION_ID = module.secrets.subscription_id
+    AZURE_CLIENT_ID       = module.secrets.client_id
   } : {}
 
   job_secret_env_vars_ssa = var.server_side_apply_enabled ? {
