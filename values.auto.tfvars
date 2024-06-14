@@ -18,6 +18,7 @@ cluster_version                  = "1.27.3"
 azure_policy_bool                = false
 acr_enabled                      = true
 install_kuberhealthy             = true
+dns_resources_enabled            = true
 
 # Machines
 min_node_count = 5
