@@ -35,7 +35,7 @@ resource "azurerm_dns_zone" "dns" {
 resource "azurerm_dns_ns_record" "subdomain_ns_delegation" {
   count               = local.enabled && ((local.with_subdomain && var.apex_domain_integration_enabled) || var.dns_resources_enabled) ? 1 : 0
   name                = var.subdomain
-  zone_name           = length(azurerm_dns_zone.dns) > 0 ? azurerm_dns_zone.dns[0].name_servers : ""
+  zone_name           = length(azurerm_dns_zone.dns) > 0 ? azurerm_dns_zone.dns[0].name_servers : []
   resource_group_name = var.apex_resource_group_name
   ttl                 = 60
   records             = azurerm_dns_zone.dns[0].name_servers
