@@ -28,7 +28,7 @@ resource "azurerm_resource_group" "dns" {
 
 resource "azurerm_dns_zone" "dns" {
   count               = local.enabled && (local.with_subdomain || var.dns_resources_enabled) ? 1 : 0
-  name                = join(".", [var.subdomain, var.apex_domain])
+  name                = var.subdomain != "" ? join(".", [var.subdomain, var.apex_domain]) : var.apex_domain
   resource_group_name = azurerm_resource_group.dns.0.name
 }
 
