@@ -28,7 +28,7 @@ node_size      = "Standard_D4s_v3"
 # Ml nodes
 use_spot_ml       = true
 ml_node_size      = "Standard_NV24s_v3"
-min_ml_node_count = 0
+min_ml_node_count = 2
 max_ml_node_count = 6
 
 # Build Spot Nodes
