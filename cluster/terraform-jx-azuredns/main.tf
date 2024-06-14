@@ -11,12 +11,12 @@ data "azurerm_subscription" "current" {
 }
 
 data "azurerm_dns_zone" "apex_domain_zone" {
-  count = local.enabled && (local.with_subdomain && var.apex_domain_integration_enabled || var.dns_resources_enabled) ? 1 : 0
+  count = local.enabled && local.with_subdomain && var.apex_domain_integration_enabled ? 1 : 0
   name  = var.apex_domain
 }
 
 data "azurerm_resource_group" "apex_resource_group" {
-  count = local.enabled && (local.with_subdomain && var.apex_domain_integration_enabled || var.dns_resources_enabled) ? 1 : 0
+  count = local.enabled && local.with_subdomain && var.apex_domain_integration_enabled ? 1 : 0
   name = var.apex_resource_group_name
 }
 
