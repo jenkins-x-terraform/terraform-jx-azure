@@ -93,3 +93,7 @@ output "kube_config_admin" {
   value     = module.cluster.kube_config_admin
   sensitive = true
 }
+
+output "kubelet_client_id" {
+  value = module.cluster.kubelet_client_id
+}
