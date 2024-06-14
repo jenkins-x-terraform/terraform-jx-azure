@@ -3,7 +3,7 @@ output "registry_name" {
 }
 
 output "registry_name_acr" {
-  value = var.external_registry_url != "" ? var.external_registry_url : azurerm_container_registry.acr.name
+  value = var.external_registry_url != "" ? var.external_registry_url : azurerm_container_registry.acr[0].name
 }
 
 output "admin_username" {
