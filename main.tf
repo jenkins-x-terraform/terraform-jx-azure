@@ -74,6 +74,7 @@ module "cluster" {
   azure_policy_bool                    = var.azure_policy_bool
   acr_enabled                          = var.acr_enabled
   install_kuberhealthy                 = var.install_kuberhealthy
+  dns_resources_enabled                = var.dns_resources_enabled
 }
 
 output "connect" {

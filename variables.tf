@@ -381,3 +381,8 @@ variable "acr_enabled" {
   description = "additional toggle to enable/disable acr creation"
   type        = string
 }
+
+variable "dns_resources_enabled" {
+  type = bool
+  description = "THis is an additional variable toggle to enable/disable the creation of DNS resources."
+}

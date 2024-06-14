@@ -140,6 +140,7 @@ module "dns" {
   location                        = var.location
   principal_id                    = module.cluster.kubelet_identity_id
   resource_group_name             = var.dns_resource_group_name
+  dns_resources_enabled           = var.dns_resources_enabled
 }
 
 module "secrets" {
