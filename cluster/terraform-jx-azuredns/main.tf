@@ -43,7 +43,7 @@ resource "azurerm_dns_ns_record" "subdomain_ns_delegation" {
 }
 
 resource "azurerm_role_assignment" "Give_ExternalDNS_SP_Contributor_Access_to_ResourceGroup" {
-  count                = local.enabled && ((local.with_subdomain && var.apex_domain_integration_enabled) || var.dns_resources_enabled) ? 1 : 0
+  count                = local.enabled ? 1 : 0
   scope                = azurerm_resource_group.dns.0.id
   role_definition_name = "DNS Zone Contributor"
   principal_id         = var.principal_id
