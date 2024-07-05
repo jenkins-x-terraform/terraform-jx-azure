@@ -51,6 +51,6 @@ resource "azurerm_role_assignment" "acrpush" {
 resource "azurerm_container_registry_cache_rule" "cache_rule" {
   name                  = "docker-io"
   container_registry_id = azurerm_container_registry.acr[0].id
-  target_repo           = "*"
+  target_repo           = "docker-io/*"
   source_repo           = "docker.io/*"
 }
