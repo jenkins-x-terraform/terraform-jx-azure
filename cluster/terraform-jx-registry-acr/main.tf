@@ -52,6 +52,6 @@ resource "azurerm_container_registry_cache_rule" "cache_rule" {
   count = var.acr_enabled && var.external_registry_url == "" ? 1 : 0
   name                  = "docker-io"
   container_registry_id = azurerm_container_registry.acr[0].id
-  target_repo           = "docker-io/*"
+  target_repo           = "*"
   source_repo           = "docker.io/*"
 }
