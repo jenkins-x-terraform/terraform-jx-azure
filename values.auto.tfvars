@@ -57,4 +57,4 @@ external_registry_url = ""
 oss_registry_name     = "mqubeoss"
 
 
-server_side_apply_enabled = true
+server_side_apply_enabled = false
