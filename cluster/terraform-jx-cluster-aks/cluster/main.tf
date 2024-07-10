@@ -9,6 +9,8 @@ resource "azurerm_kubernetes_cluster" "aks" {
   azure_policy_enabled = var.azure_policy_bool
   http_application_routing_enabled = false
   
+  automatic_channel_upgrade = "patch"
+  
   azure_active_directory_role_based_access_control {
     managed = true
   }
