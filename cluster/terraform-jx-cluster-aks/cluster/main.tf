@@ -10,6 +10,13 @@ resource "azurerm_kubernetes_cluster" "aks" {
   http_application_routing_enabled = false
   
   automatic_channel_upgrade = "patch"
+  maintenance_window_auto_upgrade {
+    day_of_week  = "Friday"
+    start_time = "19:00"
+    duration = 1
+    frequency = "Weekly"
+    interval = 1 //every week
+  }
   
   azure_active_directory_role_based_access_control {
     managed = true
