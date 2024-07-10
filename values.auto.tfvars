@@ -46,7 +46,7 @@ max_infra_node_count = 6
 # MLbuild Node
 use_spot_mlbuild       = true
 mlbuild_node_size      = "Standard_NC4as_T4_v3"
-min_mlbuild_node_count = 2
+min_mlbuild_node_count = 0
 max_mlbuild_node_count = 5
 
 
