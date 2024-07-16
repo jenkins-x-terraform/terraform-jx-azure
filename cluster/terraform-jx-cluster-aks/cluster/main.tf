@@ -18,6 +18,15 @@ resource "azurerm_kubernetes_cluster" "aks" {
     interval = 1 //every week
   }
   
+  node_os_channel_upgrade = "SecurityPatch"
+  maintenance_window_node_os {
+    day_of_week  = "Friday"
+    start_time = "19:00"
+    duration = 4
+    frequency = "Weekly"
+    interval = 1 //every week
+  }
+  
   azure_active_directory_role_based_access_control {
     managed = true
   }
