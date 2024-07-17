@@ -54,4 +54,5 @@ resource "azurerm_container_registry_cache_rule" "cache_rule" {
   container_registry_id = azurerm_container_registry.acr[0].id
   target_repo           = "docker-io/*"
   source_repo           = "docker.io/*"
+  credential_set_id = "${azurerm_container_registry.acr[0].id}/credentialSets/dockerhub-cred"
 }
