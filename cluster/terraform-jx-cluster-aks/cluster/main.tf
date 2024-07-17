@@ -20,7 +20,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   
   node_os_channel_upgrade = "SecurityPatch"
   maintenance_window_node_os {
-    day_of_week  = "Friday"
+    day_of_week  = "Saturday"
     start_time = "19:00"
     duration = 4
     frequency = "Weekly"
