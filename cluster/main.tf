@@ -96,6 +96,7 @@ module "cluster" {
   vnet_cidr                        = var.vnet_cidr
   azure_policy_bool                = var.azure_policy_bool
   microsoft_defender_log_id        = module.cluster.microsoft_defender_log_id
+  default_suk_bool                 = var.default_suk_bool
 }
 
 module "registry" {

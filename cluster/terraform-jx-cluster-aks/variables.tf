@@ -238,3 +238,7 @@ variable "default_rg" {
   type = string
   default = "DefaultResourceGroup-SUK"
 }
+
+variable "default_suk_bool" {
+  type = bool
+}
