@@ -86,7 +86,7 @@ module "cluster" {
   max_mlbuild_node_count           = var.max_mlbuild_node_count
   azure_policy_bool                = var.azure_policy_bool
   microsoft_defender_log_id        = module.cluster.microsoft_defender_log_id
-  defender_resource_group          = azurerm_resource_group.default_suk.name
+  defender_resource_group          = azurerm_resource_group.default_suk[0].name
 }
 
 // ----------------------------------------------------------------------------
