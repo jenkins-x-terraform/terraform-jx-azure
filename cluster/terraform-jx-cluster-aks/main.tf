@@ -21,6 +21,10 @@ data "azurerm_subscription" "current" {
 // Setup Azure Resource Groups
 // ----------------------------------------------------------------------------
 
+data "azurerm_resource_group" "existing_suk" {
+  name = var.default_rg
+}
+
 resource "azurerm_resource_group" "network" {
   name     = local.network_resource_group_name
   location = var.location
@@ -86,7 +90,7 @@ module "cluster" {
   max_mlbuild_node_count           = var.max_mlbuild_node_count
   azure_policy_bool                = var.azure_policy_bool
   microsoft_defender_log_id        = module.cluster.microsoft_defender_log_id
-  defender_resource_group          = azurerm_resource_group.default_suk[0].name
+  defender_resource_group          = var.default_suk_bool ? data.azurerm_resource_group.existing_suk.name : azurerm_resource_group.default_suk[0].name
 }
 
 // ----------------------------------------------------------------------------
