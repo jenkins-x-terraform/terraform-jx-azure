@@ -390,3 +390,7 @@ variable "dns_resources_enabled" {
   type = bool
   description = "THis is an additional variable toggle to enable/disable the creation of DNS resources."
 }
+
+variable "default_suk_bool" {
+  type = bool
+}

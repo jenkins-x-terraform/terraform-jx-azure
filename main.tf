@@ -75,6 +75,7 @@ module "cluster" {
   acr_enabled                          = var.acr_enabled
   install_kuberhealthy                 = var.install_kuberhealthy
   dns_resources_enabled                = var.dns_resources_enabled
+  default_suk_bool                     = var.default_suk_bool
 }
 
 output "connect" {

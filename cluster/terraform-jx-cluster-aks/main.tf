@@ -27,6 +27,7 @@ resource "azurerm_resource_group" "network" {
 }
 
 resource "azurerm_resource_group" "default_suk" {
+  count    = var.default_suk_bool ? 1 : 0
   name     = var.default_rg
   location = var.location
 }
