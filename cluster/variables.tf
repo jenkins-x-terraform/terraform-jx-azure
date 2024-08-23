@@ -394,3 +394,7 @@ variable "dns_resources_enabled" {
 variable "default_suk_bool" {
   type = bool
 }
+
+variable "enable_defender_analytics" {
+  type = bool
+}

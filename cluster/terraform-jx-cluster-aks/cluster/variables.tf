@@ -224,3 +224,6 @@ variable "defender_resource_group" {
   type = string
 }
 
+variable "enable_defender_analytics" {
+  type = bool
+}

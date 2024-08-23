@@ -242,3 +242,7 @@ variable "default_rg" {
 variable "default_suk_bool" {
   type = bool
 }
+
+variable "enable_defender_analytics" {
+  type = bool
+}
