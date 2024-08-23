@@ -85,7 +85,7 @@ resource "azurerm_kubernetes_cluster_node_pool" "mlnode" {
   node_taints = ["sku=gpu:NoSchedule"]
   node_labels = {key = "gpu_ready"}
 
-  lifecycle {ignore_changes = [node_taints, node_count, node_labels]}
+  lifecycle {ignore_changes = [node_taints, node_count, node_labels, orchestrator_version]}
 }
 
 resource "azurerm_kubernetes_cluster_node_pool" "buildnode" {
@@ -104,7 +104,7 @@ resource "azurerm_kubernetes_cluster_node_pool" "buildnode" {
   auto_scaling_enabled  = var.max_build_node_count == null ? false : true
   node_taints = ["sku=build:NoSchedule"]
 
-  lifecycle {ignore_changes = [node_taints, node_count]}
+  lifecycle {ignore_changes = [node_taints, node_count, orchestrator_version]}
 }
 
 resource "azurerm_kubernetes_cluster_node_pool" "infranode" {
@@ -123,7 +123,7 @@ resource "azurerm_kubernetes_cluster_node_pool" "infranode" {
   auto_scaling_enabled  = var.max_infra_node_count == null ? false : true
   node_taints = ["sku=infra:NoSchedule"]
 
-  lifecycle {ignore_changes = [node_taints, node_count]}
+  lifecycle {ignore_changes = [node_taints, node_count, orchestrator_version]}
 }
 
 resource "azurerm_kubernetes_cluster_node_pool" "mlbuildnode" {
@@ -143,5 +143,5 @@ resource "azurerm_kubernetes_cluster_node_pool" "mlbuildnode" {
   node_taints = ["sku=mlbuild:NoSchedule"]
   node_labels = {key = "gpu_ready"}
   
-  lifecycle {ignore_changes = [node_taints, node_count, node_labels]}
+  lifecycle {ignore_changes = [node_taints, node_count, node_labels, orchestrator_version]}
 }
