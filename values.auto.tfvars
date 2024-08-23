@@ -14,13 +14,14 @@ dns_resource_group_name          = "jx3build-dns-rsg"
 key_vault_enabled                = false
 key_vault_resource_group_name    = "jx3key-vault-rsg"
 key_vault_name                   = "k8secrets-vault"
-cluster_version                  = "1.28.10"
+cluster_version                  = "1.28.12"
+orchestrator_version             = "1.28.11"
 azure_policy_bool                = false
 acr_enabled                      = true
 install_kuberhealthy             = true
 dns_resources_enabled            = true
 default_suk_bool                 = true
-enable_defender_analytics = true
+enable_defender_analytics        = true
 # Machines
 min_node_count = 5
 max_node_count = 50

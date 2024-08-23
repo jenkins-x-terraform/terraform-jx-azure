@@ -77,6 +77,7 @@ module "cluster" {
   dns_resources_enabled                = var.dns_resources_enabled
   default_suk_bool                     = var.default_suk_bool
   enable_defender_analytics            = var.enable_defender_analytics
+  orchestrator_version                 = var.orchestrator_version
 }
 
 output "connect" {

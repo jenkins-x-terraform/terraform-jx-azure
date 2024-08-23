@@ -221,6 +221,12 @@ variable "cluster_version" {
   default     = "1.20.9"
   description = "Kubernetes version to use for the AKS cluster"
 }
+
+variable "orchestrator_version" {
+  description = "Kubernetes orchestrator version"
+  type = string
+}
+
 variable "network_resource_group_name" {
   type        = string
   default     = ""

@@ -179,8 +179,13 @@ variable "dns_prefix" {
 }
 variable "cluster_version" {
   type    = string
-  default = "1.20.9"
 }
+
+variable "orchestrator_version" {
+  description = "Kubernetes orchestrator version"
+  type = string
+}
+
 variable "location" {
   type    = string
   default = "australiaeast"
