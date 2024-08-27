@@ -25,6 +25,12 @@ data "azurerm_resource_group" "existing_suk" {
   name = var.default_rg
 }
 
+data "azurerm_log_analytics_workspace" "microsoft_defender" {
+  count = var.enable_defender_analytics ? 1 : 0
+  name = var.microsoft_defender_log_analytics_name
+  resource_group_name = azurerm_resource_group.default_suk[0].name
+}
+
 resource "azurerm_resource_group" "network" {
   name     = local.network_resource_group_name
   location = var.location
@@ -89,7 +95,7 @@ module "cluster" {
   min_mlbuild_node_count           = var.min_mlbuild_node_count
   max_mlbuild_node_count           = var.max_mlbuild_node_count
   azure_policy_bool                = var.azure_policy_bool
-  microsoft_defender_log_id        = module.cluster.microsoft_defender_log_id
+  microsoft_defender_log_id        = var.enable_defender_analytics ? module.cluster.microsoft_defender_log_id : data.azurerm_log_analytics_workspace.microsoft_defender.id
   defender_resource_group          = var.default_suk_bool ? azurerm_resource_group.default_suk[0].name : data.azurerm_resource_group.existing_suk.name
   enable_defender_analytics        = var.enable_defender_analytics
   tenant_id                        = data.azurerm_subscription.current.tenant_id
