@@ -9,7 +9,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   azure_policy_enabled = var.azure_policy_bool
   http_application_routing_enabled = false
   
-  automatic_channel_upgrade = "patch"
+  automatic_upgrade_channel = "patch"
   maintenance_window_auto_upgrade {
     day_of_week  = "Friday"
     start_time = "19:00"
@@ -18,7 +18,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
     interval = 1 //every week
   }
   
-  node_os_channel_upgrade = "SecurityPatch"
+  node_os_upgrade_channel = "SecurityPatch"
   maintenance_window_node_os {
     day_of_week  = "Saturday"
     start_time = "19:00"
@@ -26,9 +26,10 @@ resource "azurerm_kubernetes_cluster" "aks" {
     frequency = "Weekly"
     interval = 1 //every week
   }
-  
+
   azure_active_directory_role_based_access_control {
-    managed = true
+   azure_rbac_enabled = false
+    tenant_id = var.tenant_id
   }
   
   microsoft_defender {
@@ -45,15 +46,14 @@ resource "azurerm_kubernetes_cluster" "aks" {
   
   default_node_pool {
     name                 = "default"
-    custom_ca_trust_enabled      = false
     scale_down_mode              = "Deallocate"
     vm_size              = var.node_size
     vnet_subnet_id       = var.vnet_subnet_id
     node_count           = var.node_count
     min_count            = var.min_node_count
     max_count            = var.max_node_count
-    orchestrator_version = var.cluster_version
-    enable_auto_scaling  = var.max_node_count == null ? false : true
+    orchestrator_version = var.orchestrator_version
+    auto_scaling_enabled  = var.max_node_count == null ? false : true
     upgrade_settings {
       max_surge = "25%"
     }
@@ -80,12 +80,12 @@ resource "azurerm_kubernetes_cluster_node_pool" "mlnode" {
   node_count            = var.use_spot_ml ? 0 : var.ml_node_count
   min_count             = var.min_ml_node_count
   max_count             = var.max_ml_node_count
-  orchestrator_version  = var.cluster_version
-  enable_auto_scaling   = var.max_ml_node_count == null ? false : true
+  orchestrator_version  = var.orchestrator_version
+  auto_scaling_enabled  = var.max_ml_node_count == null ? false : true
   node_taints = ["sku=gpu:NoSchedule"]
   node_labels = {key = "gpu_ready"}
 
-  lifecycle {ignore_changes = [node_taints, node_count, node_labels]}
+  lifecycle {ignore_changes = [node_taints, node_count, node_labels, orchestrator_version]}
 }
 
 resource "azurerm_kubernetes_cluster_node_pool" "buildnode" {
@@ -100,11 +100,11 @@ resource "azurerm_kubernetes_cluster_node_pool" "buildnode" {
   node_count            = var.use_spot ? 0 : var.build_node_count
   min_count             = var.min_build_node_count
   max_count             = var.max_build_node_count
-  orchestrator_version  = var.cluster_version
-  enable_auto_scaling   = var.max_build_node_count == null ? false : true
+  orchestrator_version  = var.orchestrator_version
+  auto_scaling_enabled  = var.max_build_node_count == null ? false : true
   node_taints = ["sku=build:NoSchedule"]
 
-  lifecycle {ignore_changes = [node_taints, node_count]}
+  lifecycle {ignore_changes = [node_taints, node_count, orchestrator_version]}
 }
 
 resource "azurerm_kubernetes_cluster_node_pool" "infranode" {
@@ -119,11 +119,11 @@ resource "azurerm_kubernetes_cluster_node_pool" "infranode" {
   node_count            = var.use_spot_infra ? 0 : var.infra_node_count
   min_count             = var.min_infra_node_count
   max_count             = var.max_infra_node_count
-  orchestrator_version  = var.cluster_version
-  enable_auto_scaling   = var.max_infra_node_count == null ? false : true
+  orchestrator_version  = var.orchestrator_version
+  auto_scaling_enabled  = var.max_infra_node_count == null ? false : true
   node_taints = ["sku=infra:NoSchedule"]
 
-  lifecycle {ignore_changes = [node_taints, node_count]}
+  lifecycle {ignore_changes = [node_taints, node_count, orchestrator_version]}
 }
 
 resource "azurerm_kubernetes_cluster_node_pool" "mlbuildnode" {
@@ -138,10 +138,10 @@ resource "azurerm_kubernetes_cluster_node_pool" "mlbuildnode" {
   node_count            = var.use_spot_mlbuild ? 0 : var.mlbuild_node_count
   min_count             = var.min_mlbuild_node_count
   max_count             = var.max_mlbuild_node_count
-  orchestrator_version  = var.cluster_version
-  enable_auto_scaling   = var.max_mlbuild_node_count == null ? false : true
+  orchestrator_version  = var.orchestrator_version
+  auto_scaling_enabled  = var.max_mlbuild_node_count == null ? false : true
   node_taints = ["sku=mlbuild:NoSchedule"]
   node_labels = {key = "gpu_ready"}
   
-  lifecycle {ignore_changes = [node_taints, node_count, node_labels]}
+  lifecycle {ignore_changes = [node_taints, node_count, node_labels, orchestrator_version]}
 }

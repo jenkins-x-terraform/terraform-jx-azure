@@ -32,5 +32,5 @@ output "kubernetes_cluster" {
   value = azurerm_kubernetes_cluster.aks
 }
 output "microsoft_defender_log_id" {
-  value = azurerm_log_analytics_workspace.microsoft_defender.id
+  value = length(azurerm_log_analytics_workspace.microsoft_defender) > 0 ? azurerm_log_analytics_workspace.microsoft_defender[0].id : null
 }

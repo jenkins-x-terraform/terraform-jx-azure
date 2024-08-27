@@ -177,6 +177,13 @@ variable "cluster_version" {
   description = "Kubernetes version to use for the AKS cluster."
   type        = string
 }
+
+variable "orchestrator_version" {
+  description = "Kubernetes orchestrator version"
+  type = string
+}
+
+
 variable "location" {
   type = string
 }
@@ -224,3 +231,10 @@ variable "defender_resource_group" {
   type = string
 }
 
+variable "enable_defender_analytics" {
+  type = bool
+}
+
+variable "tenant_id" {
+  type = string
+}

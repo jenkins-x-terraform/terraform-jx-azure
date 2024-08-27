@@ -91,6 +91,9 @@ module "cluster" {
   azure_policy_bool                = var.azure_policy_bool
   microsoft_defender_log_id        = module.cluster.microsoft_defender_log_id
   defender_resource_group          = var.default_suk_bool ? azurerm_resource_group.default_suk[0].name : data.azurerm_resource_group.existing_suk.name
+  enable_defender_analytics        = var.enable_defender_analytics
+  tenant_id                        = data.azurerm_subscription.current.tenant_id
+  orchestrator_version             = var.orchestrator_version
 }
 
 // ----------------------------------------------------------------------------

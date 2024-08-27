@@ -11,4 +11,5 @@ resource "azurerm_subnet" "cluster_subnet" {
   resource_group_name  = var.resource_group
   virtual_network_name = azurerm_virtual_network.cluster.name
   address_prefixes     = [var.subnet_cidr]
+  private_endpoint_network_policies = "Enabled"
 }
