@@ -14,6 +14,7 @@ spec:
           image: uses:jenkins-x/jx3-pipeline-catalog/tasks/terraform/release.yaml@versionStream
           resources:
             limits: {}
+            requests: {}
           workingDir: /workspace/source
         steps:
         - image: uses:jenkins-x/jx3-pipeline-catalog/tasks/git-clone/git-clone.yaml@versionStream
@@ -21,7 +22,10 @@ spec:
         - name: next-version
           resources: {}
         - name: jx-variables
-          resources: {}
+          resources:
+            requests:
+              cpu: 400m
+              memory: 600Mi
         - name: lint
           resources: {}
         - name: changelog
