@@ -11,6 +11,7 @@ terraform {
 }
 
 provider "azurerm" {
+  subscription_id = var.azure_subscription_id
   features {
     key_vault {
       purge_soft_delete_on_destroy = false

@@ -1,3 +1,8 @@
+variable "azure_subscription_id" {
+  description = "The Azure Subscription ID to use. You can also set ARM_SUBSCRIPTION_ID environment variable"
+  type        = string
+}
+
 variable "cluster_name" {
   description = "Variable to provide your desired name for the cluster. The script will create a random name if this is empty"
   type        = string

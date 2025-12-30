@@ -1,3 +1,6 @@
+data "azurerm_client_config" "current" {
+}
+
 resource "azurerm_kubernetes_cluster" "aks" {
   name                = var.cluster_name
   location            = var.location
@@ -14,7 +17,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
     min_count            = var.min_node_count
     max_count            = var.max_node_count
     orchestrator_version = var.cluster_version
-    enable_auto_scaling  = var.max_node_count == null ? false : true
+    auto_scaling_enabled = var.max_node_count == null ? false : true
   }
 
   network_profile {
@@ -25,35 +28,20 @@ resource "azurerm_kubernetes_cluster" "aks" {
     type = "SystemAssigned"
   }
 
-  role_based_access_control {
-    enabled = true
+  azure_active_directory_role_based_access_control {
+    tenant_id          = data.azurerm_client_config.current.tenant_id
+    azure_rbac_enabled = true
+  }
 
-    azure_active_directory {
-      managed = true
+  dynamic "oms_agent" {
+    for_each = var.enable_log_analytics ? [1] : []
+    content {
+      log_analytics_workspace_id = azurerm_log_analytics_workspace.cluster[0].id
     }
   }
 
-  addon_profile {
-    dynamic "oms_agent" {
-      for_each = var.enable_log_analytics ? [""] : []
-      content {
-        enabled                    = var.enable_log_analytics
-        log_analytics_workspace_id = var.enable_log_analytics ? azurerm_log_analytics_workspace.cluster[0].id : ""
-      }
-    }
-    aci_connector_linux {
-      enabled = false
-    }
-    azure_policy {
-      enabled = false
-    }
-    http_application_routing {
-      enabled = false
-    }
-    kube_dashboard {
-      enabled = false
-    }
-  }
+  azure_policy_enabled             = false
+  http_application_routing_enabled = false
 }
 
 resource "azurerm_kubernetes_cluster_node_pool" "mlnode" {
@@ -66,7 +54,7 @@ resource "azurerm_kubernetes_cluster_node_pool" "mlnode" {
   min_count             = var.min_ml_node_count
   max_count             = var.max_ml_node_count
   orchestrator_version  = var.cluster_version
-  enable_auto_scaling   = var.max_ml_node_count == null ? false : true
+  auto_scaling_enabled  = var.max_ml_node_count == null ? false : true
   node_taints           = ["sku=gpu:NoSchedule"]
 }
 
@@ -83,6 +71,6 @@ resource "azurerm_kubernetes_cluster_node_pool" "buildnode" {
   min_count             = var.min_build_node_count
   max_count             = var.max_build_node_count
   orchestrator_version  = var.cluster_version
-  enable_auto_scaling   = var.max_build_node_count == null ? false : true
+  auto_scaling_enabled  = var.max_build_node_count == null ? false : true
   node_taints           = ["sku=build:NoSchedule"]
 }

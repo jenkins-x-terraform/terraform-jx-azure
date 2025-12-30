@@ -6,7 +6,7 @@ terraform {
   required_version = ">= 0.13.2"
   required_providers {
     azurerm = {
-      version = ">=2.41.0"
+      version = ">=4.23.0"
     }
   }
 }
@@ -27,8 +27,8 @@ resource "azurerm_storage_account" "storage" {
 }
 
 resource "azurerm_storage_container" "logs" {
-  name                 = "logs"
-  storage_account_name = azurerm_storage_account.storage.name
+  name               = "logs"
+  storage_account_id = azurerm_storage_account.storage.id
 }
 
 resource "azurerm_role_assignment" "storage" {
